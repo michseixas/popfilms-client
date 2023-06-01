@@ -29,17 +29,36 @@ $ npm start
 | Route                | Privacy         | Renders                  |
 | -------------------- | :-------------: | ------------------------ |
 | /                    | public          | HomePage                 |
-| /signup              | public          | SignupPage               |
-| /login               | public          | LoginPage                |
 | /profile             | private (user)  | UserProfilePage          |
-| /errorpage             | public (user)  | ErrorPage          |
-| /allmovies             | private (user)  | AllMovies          |
-| /moviedetails             | private (user)  | MovieDetails          |
+| /:movieListType            | public (user)  | MovieListPage          |
+| /movies/:movieId           | public (user)  | MovieDetailsPage          |
+| *            | public (user)  | ErrorPage          |
 |      ...        |   |           |
 
 ## Components
 - Navbar
-- CreateComments
 - Alert
-- ...
+- Footer
+- SignupForm 
+- LoginForm 
+- Carrousel (Homepage)
+- MovieCardTheater (Homepage)  
+- MovieCardTop (Homepage)  
+- CelebrityCard (MoviesListPage)  
+- GenresCloud (MoviesListPage)
+- MovieDetailInfo (MovieDetailsPage)
+- CreateComment (MovieDetailsPage)
+- MovieCard (MoviesListPage & UserProfilePage)  
+- CommentCard (MovieDetailsPage & UserProfilePage)
+- UserProfileInfo (UserProfilePage)
+
+
+
+## Pages
+- HomePage
+- MoviesListPage
+- MovieDetailsPage
+- UserProfilePage
+
+
 
