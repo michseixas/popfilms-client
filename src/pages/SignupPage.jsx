@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-// import Alert from "../components/Alert";
+import Alert from "../components/Alert";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../contexts/auth.context";
+import { signup } from "../services/auth.service";
 
 let baseUrl = "http://localhost:5005/auth";
 
@@ -35,8 +36,9 @@ function SignupPage() {
 
     const user = { username, email, password };
 
-    axios
-      .post(baseUrl + "/signup", user)
+    // axios
+    //   .post(baseUrl + "/signup", user)
+    signup(user)
       .then((resp) => {
         console.log(resp);
         navigate("/login");
