@@ -68,7 +68,7 @@ function SignupPage() {
             Email
           </label>
           <input
-            type="email"
+            type="text"
             className="form-control"
             id="email"
             value={email}
