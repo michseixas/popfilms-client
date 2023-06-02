@@ -8,6 +8,7 @@ let baseUrl = "http://localhost:5005/auth";
 
 function SignupPage() {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const [error, setError] = useState("");
@@ -21,7 +22,7 @@ function SignupPage() {
 
     
 
-    if (username == "" || password == "" || passwordRepeat == "") {
+    if (username == "" || email=="" || password == "" || passwordRepeat == "") {
       console.log("error: fields missing");
       setError("error: fields missing");
       return;
@@ -32,7 +33,7 @@ function SignupPage() {
       return;
     }
 
-    const user = { username, password };
+    const user = { username, email, password };
 
     axios
       .post(baseUrl + "/signup", user)
@@ -60,6 +61,18 @@ function SignupPage() {
             id="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Email
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="mb-3">
