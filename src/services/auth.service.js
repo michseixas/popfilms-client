@@ -3,8 +3,10 @@ let baseUrl = 'http://localhost:5005/auth';
 
 
 
-const signup = (username, email, password) => {
-    return axios.post(baseUrl + '/signup', {username, email, password})
+const signup = (user) => {
+    console.log ("get to the signup service..........", user)
+    return axios.post(baseUrl + '/signup', user)
+    
 }
 
 const login = (username, password) => {

@@ -38,7 +38,7 @@ function SignupPage() {
 
     // axios
     //   .post(baseUrl + "/signup", user)
-    signup({ username, email, password })
+    signup(user)
       .then((resp) => {
         console.log(resp);
         navigate("/login");
