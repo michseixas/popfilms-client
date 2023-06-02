@@ -3,25 +3,22 @@ let baseUrl = 'http://localhost:5005/auth';
 
 
 
-const signup = (username, email, password, passwordRepeat) => {
-
-    return axios.post(baseUrl + '/signup', {username, email, password, passwordRepeat})
+const signup = (user) => {
+    console.log ("get to the signup service..........", user)
+    return axios.post(baseUrl + '/signup', user)
+    
 }
 
-
-
-
 const login = (username, password) => {
-
     return axios.post(baseUrl + '/login', {username, password})
 }
 
-const logout = () => {
 
-    return <Navigate to = "/login" />
-}
-
-
+// const logout = () => {
+//     return <Navigate to = "/login" />
+// }
 
 
-export {signup, login, logout};
+
+
+export {signup, login};
