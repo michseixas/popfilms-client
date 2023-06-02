@@ -1,9 +1,9 @@
+import React from 'react'
+
 function ErrorPage() {
-    return (
-      <div>
-      <h1>example of error from error page </h1>
-      </div>
-    )
-  }
-  
-  export default ErrorPage;
+  return (
+    <div>ErrorPage</div>
+  )
+}
+
+export default ErrorPage;
