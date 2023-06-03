@@ -4,10 +4,10 @@ import { createContext, useEffect, useState } from "react";
 
 const authContext = createContext();
 
-let baseUrl = 'http://localhost:5173/auth';
+let baseUrl = 'http://localhost:5005/auth';
 
 function AuthProviderWrapper({children}){
-
+    const [signupOk, setSignupOk] = useState(false); //This always will be false, only during signup it will set up to true.
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -19,6 +19,10 @@ function AuthProviderWrapper({children}){
     const getHeaders = () => {
         let token = localStorage.getItem('authToken');
         return {headers: {authorization: `Bearer ${token}`}};
+    }
+
+    const signupIsOk = () => {
+        setSignupOk(true); //This is when the signupOk variable is set to true. This function will be called after successful signup. 
     }
 
     const isAuthenticated = () => {
@@ -48,7 +52,9 @@ function AuthProviderWrapper({children}){
         user,
         loading,
         isAuthenticated,
-        getHeaders
+        getHeaders,
+        signupOk,
+        signupIsOk
     }
     return(<authContext.Provider value={exposedValues}>
         {children}
