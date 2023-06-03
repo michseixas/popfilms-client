@@ -1,17 +1,18 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
-// import Alert from "../components/Alert";
+import Alert from "../components/Alert";
 import { authContext } from "../contexts/auth.context";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 let baseUrl = "http://localhost:5005/auth";
 
-function LoginPage() {
+function LoginPage(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  const { isAuthenticated, isLoggedIn, loading } = useContext(authContext);
+  const { isAuthenticated, isLoggedIn, loading , signupOk} = useContext(authContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -29,8 +30,13 @@ function LoginPage() {
         let jwt = data.authToken;
         localStorage.setItem("authToken", jwt);
         isAuthenticated();
+        //navigate("/");
+
       })
-      .catch((err) => setError("Could not finish the process, try again"));
+      .catch((err) => {
+        console.log("Que error ocurrio aqui?", err)
+        setError("Could not finish the process, try again--------")
+      });
   };
 
   if (!loading && isLoggedIn) return <Navigate to="/" />;
@@ -38,7 +44,9 @@ function LoginPage() {
   return (
     <div>
       <h1 className="text-center">Login</h1>
+      {/* The following message will appear once the user successfully signs up to Popfilms. The signupOk variable is defined in the auth.context. */}
       <form onSubmit={submitHandler} className="w-75 mx-auto">
+      {signupOk && <Alert message= "Thank you for signing up. You can now use your credentials to login to Popfilms." />} 
         {error != "" && <Alert message={error} />}
         <div className="mb-3">
           <label htmlFor="username" className="form-label">

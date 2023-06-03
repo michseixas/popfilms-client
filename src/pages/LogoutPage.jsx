@@ -5,7 +5,7 @@ import { Navigate } from 'react-router-dom';
  function LogoutPage() {
 
     const {isAuthenticated} = useContext(authContext);
-
+    
     useEffect(()=>{
         localStorage.removeItem('authToken');
         isAuthenticated();
