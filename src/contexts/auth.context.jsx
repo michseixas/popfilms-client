@@ -25,6 +25,11 @@ function AuthProviderWrapper({children}){
         setSignupOk(true); //This is when the signupOk variable is set to true. This function will be called after successful signup. 
     }
 
+    const signupDone = () => {
+        setSignupOk(false); //This is when the signupOk variable is set to false. This will hide the alert if you are already signed up and want to login again.
+    }
+
+
     const isAuthenticated = () => {
         //get a token:
         let token = localStorage.getItem('authToken');
@@ -54,7 +59,8 @@ function AuthProviderWrapper({children}){
         isAuthenticated,
         getHeaders,
         signupOk,
-        signupIsOk
+        signupIsOk,
+        signupDone
     }
     return(<authContext.Provider value={exposedValues}>
         {children}
