@@ -6,22 +6,22 @@ let baseUrl = 'http://localhost:5005/user';
 
 //get user info by Id
 const getUserInfo = (userId) => {
-    return axios.get(baseUrl + '/:userId')
+    return axios.get(baseUrl + '/'+ userId)
 };
 
 //update user info by Id
 const updateUserInfo= (userId, newData) => {
-    return axios.post(baseUrl + '/update', newData)
+    return axios.post(baseUrl + '/:userId/update', newData)
 };
 
 //delete user by Id
 const deleteUser= (userId) => {
-    return axios.post(baseUrl + '/delete')
+    return axios.post(baseUrl + '/:userId/delete')
 };
 
 //update user image by Id
 const updateImage= (userId, newImage) => {
-    return axios.post(baseUrl + '/updateImage', {image: newImage})
+    return axios.post(baseUrl + '/:userId/updateImage', {image: newImage})
 }
 
 
