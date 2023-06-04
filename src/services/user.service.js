@@ -11,7 +11,7 @@ const getUserInfo = (userId) => {
 
 //update user info by Id
 const updateUserInfo= (userId, newData) => {
-    return axios.post(baseUrl + '/:userId/update', newData)
+    return axios.post(baseUrl + '/' + userId +'/update', newData)
 };
 
 //delete user by Id
