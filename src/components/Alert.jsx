@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Alert() {
+function Alert(props) {
   return (
     <div className="alert alert-success" role="alert">
-  A simple success alert—check it out!
+  {props.message}
 </div>
   )
 }

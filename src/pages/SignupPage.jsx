@@ -16,21 +16,20 @@ function SignupPage() {
 
   const navigate = useNavigate();
 
-  const { isLoggedIn, loading } = useContext(authContext);
+  const { isLoggedIn, loading, signupIsOk } = useContext(authContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-    
 
     if (username == "" || email=="" || password == "" || passwordRepeat == "") {
       console.log("error: fields missing");
-      setError("error: fields missing");
+      setError("Some fields are missing");
       return;
     }
     if (password != passwordRepeat) {
       console.log("passwords should match");
-      setError("error: passwords should match");
+      setError("Passwords should match");
       return;
     }
 
@@ -41,9 +40,13 @@ function SignupPage() {
     signup(user)
       .then((resp) => {
         console.log(resp);
+        signupIsOk();//We call this function from the auth.context to set the signup ok to true so the login page can show the confirmation alert.
         navigate("/login");
       })
-      .catch((err) => setError("Could not finish the process, try again"));
+      .catch((err) => {
+        console.log(err);
+        setError(err.response.data.message);
+      });
   };
 
   if (!loading && isLoggedIn) return <Navigate to="/" />;

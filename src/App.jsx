@@ -4,7 +4,6 @@ import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import LogoutPage from "./pages/LogoutPage";
-
 import UserProfilePage from "./pages/UserProfilePage";
 import MoviesListPage from "./pages/MoviesListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
@@ -16,8 +15,9 @@ import { AuthProviderWrapper } from "./contexts/auth.context";
 function App() {
   return (
     <>
-      <Navbar />
+
       <AuthProviderWrapper>
+      <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/profile" element={<UserProfilePage />} />
