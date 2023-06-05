@@ -3,6 +3,7 @@ import { authContext } from "../contexts/auth.context";
 import { getUserInfo } from "../services/user.service";
 import { deleteUser } from "../services/user.service";
 import EditUserInfo from "../components/EditUserInfoModal";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function UserProfilePage() {
   const [userInfo, setUserInfo] = useState({});
@@ -13,6 +14,7 @@ function UserProfilePage() {
 
   const { user } = useContext(authContext); // get the user token so we can access it's ID, to fetch data
   //const userId = user._id;
+  const navigate = useNavigate();
 
   useEffect(() => {
     getUserInfo(user._id) // The initial get to populate userInfo object has to be done with the user Id that is in the AUTH TOKEN, otherwise UserId is empty
@@ -37,27 +39,25 @@ function UserProfilePage() {
     console.log("Delete profile button clicked");
     deleteUser(user._id)
       .then(() => {
-        //deleting user data when button clicked
-        // setUserInfo({});
-        // setName("");
-        // setEmail("");
-        // WHEN THE USER IS DONE BEING DELETED, WE NEED TO LOGOFF
+      navigate("/logout");
       })
       .catch((error) => console.error(error));
   };
 
+  if (!deleteUser && deleted) return <Navigate to="/" />;
+
   return (
     <div className="container mt-5">
-      <h1>This is the Profile page for our users</h1>
 
       <div>
         <img src={userInfo.imageUrl} alt="Avatar" className="img-fluid" />
         <input type="file" onChange={handleUpdateAvatar} />
       </div>
 
-      <EditUserInfo userId={user._id}/>
+      {/* {user && <EditUserInfo userId={user._id} />} */}
+      <EditUserInfo userId={user._id} />
       <div>
-        <button type="submit" className="btn btn-danger">
+        <button type="submit" className="btn btn-danger" onClick={handleDeleteProfile}>
           Delete profile
         </button>
       </div>
