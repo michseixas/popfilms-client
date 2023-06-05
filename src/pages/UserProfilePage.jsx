@@ -57,7 +57,7 @@ function UserProfilePage() {
 
       <EditUserInfo userId={user._id}/>
       <div>
-        <button type="submit" className="btn btn-danger">
+        <button type="submit" className="btn btn-danger" onClick={handleDeleteProfile}>
           Delete profile
         </button>
       </div>
