@@ -8,24 +8,45 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../contexts/auth.context";
 import { signup } from "../services/auth.service";
 
-let baseUrl = "http://localhost:5005/auth";
 
 function SignupPage() {
+  let baseUrl = "http://localhost:5005/auth";
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
   const [error, setError] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+  const [loadingImage, setLoadingImage] = useState(false);
 
   const navigate = useNavigate();
 
   const { isLoggedIn, loading, signupIsOk } = useContext(authContext);
+  const handleFileUpload = (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+    setLoadingImage (true);
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+    // setImageUrl('uploading')
+    axios.post(baseUrl + '/upload', uploadData)
+      .then(response => {
+        // console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setImageUrl(response.data.fileUrl);
+        setLoadingImage(false);
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
 
-
-    if (username == "" || email=="" || password == "" || passwordRepeat == "") {
+    if (loadingImage) return;
+    if (username == "" || email== "" || password == "" || passwordRepeat == "") {
       console.log("error: fields missing");
       setError("Some fields are missing");
       return;
@@ -36,7 +57,7 @@ function SignupPage() {
       return;
     }
 
-    const user = { username, email, password };
+    const user = { username, email, password, imageUrl };
 
     // axios
     //   .post(baseUrl + "/signup", user)
@@ -99,6 +120,11 @@ function SignupPage() {
           <label htmlFor="passwordrepeat" className="form-label">
             Repeat password
           </label>
+          {/* //cloudinary start*/}
+          <label>Image:</label>
+          {loadingImage && <p>Loading image...</p>}
+        <input type="file" onChange={(e) => handleFileUpload(e)} />
+          {/* //cloudinary end*/}
           <input
             type="password"
             className="form-control"
@@ -107,7 +133,7 @@ function SignupPage() {
             onChange={(e) => setPasswordRepeat(e.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary" disabled= {loadingImage}>
           Signup
         </button>
       </form>

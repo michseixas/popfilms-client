@@ -16,7 +16,7 @@ const updateUserInfo= (userId, newData) => {
 
 //delete user by Id
 const deleteUser= (userId) => {
-    return axios.post(baseUrl + '/:userId/delete')
+    return axios.post(baseUrl + '/' + userId +'/delete')
 };
 
 //update user image by Id
