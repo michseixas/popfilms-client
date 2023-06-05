@@ -8,7 +8,10 @@ const getUserInfo = () => {
     
 }
 
+const likeMovie = () => {
+    return axios.post(baseUrl + '/:userId/likeMovie')
+    
+}
 
 
-
-export {getUserInfo};
+export {getUserInfo, likeMovie};
