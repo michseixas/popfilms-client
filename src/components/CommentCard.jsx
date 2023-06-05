@@ -18,6 +18,9 @@ const commentSchema = new Schema({
   movieId: {
     type: String,
   },
+  // userId: {
+  //   type: String,
+  // },
 });
 
 module.exports = model("Comment", commentSchema);
