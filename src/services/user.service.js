@@ -24,10 +24,17 @@ const updateImage= (userId, newImage) => {
     return axios.post(baseUrl + '/:userId/updateImage', {image: newImage})
 }
 
-const likeMovie = () => {
-    return axios.post(baseUrl + '/:userId/likeMovie')
+// const likeMovie = () => {
+//     return axios.post(baseUrl + '/:userId/likeMovie')
     
-}
+// }
+
+const likeMovie = () => {
+    let token = localStorage.getItem('authToken');
+
+    return axios.post(`${baseUrl}/likeMovie`, {}, {headers: {authorization: `Bearer ${token}`}});
+  };
+  
 
 
 
