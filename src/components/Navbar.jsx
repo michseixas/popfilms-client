@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { authContext } from '../contexts/auth.context'
+import SignupModal from './SignupModal';
+import LoginModal from './LoginModal';
 
 const Navbar = () => {
   const { isLoggedIn, user, loading } = useContext(authContext);
@@ -26,11 +28,12 @@ const Navbar = () => {
           </li>
         </>}
         {!loading && !isLoggedIn && <>
-          <li className="nav-item">
-              <Link to='/signup' className="navbar-brand">Signup</Link>
+        
+        <li className="nav-item">
+        <SignupModal />
           </li>
           <li className="nav-item">
-              <Link to='/login' className="navbar-brand">Login</Link>
+        <LoginModal />
           </li>
         </>}
       </div>

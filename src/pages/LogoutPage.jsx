@@ -12,7 +12,7 @@ import { Navigate } from 'react-router-dom';
     }, []);
 
   return (
-    <Navigate to="/login" />
+    <Navigate to="/" />
   )
 }
 

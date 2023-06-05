@@ -1,3 +1,6 @@
+//This SignupPage was the first step Signup implemented in our project but is not being used anymore, since whe decided to use SignupModal for login.
+//We keep this code for study purposes. 
+
 import React, { useContext, useState } from "react";
 import Alert from "../components/Alert";
 import axios from "axios";
