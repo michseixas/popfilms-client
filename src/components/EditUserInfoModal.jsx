@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 import { getUserInfo } from "../services/user.service";
 
 let baseUrl = "http://localhost:5005/user";
@@ -10,12 +11,19 @@ let baseUrl = "http://localhost:5005/user";
 function EditUserInfo({ userId }) {
   console.log(userId);
   const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
   const [userInfo, setUserInfo] = useState({});
   const [username, setUserName] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [city, setCity] = useState("");
+  const [country, setCountry] = useState("");
+  const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
   const [count, setCount] = useState(0);
+  const [updateInfo, setUpdateInfo] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClose = () => setShow(false);
 
   useEffect(() => {
     getUserInfo(userId) // The initial get to populate userInfo object has to be done with the user Id that is in the AUTH TOKEN, otherwise UserId is empty
@@ -24,12 +32,16 @@ function EditUserInfo({ userId }) {
         console.log(data); // Log the data to see if we have correct data
         setUserInfo(data); // populate the userInfo Object with the user's data
         setUserName(data.username || ""); //update user's username in the state
-        setName(data.name || ""); //update user's name in the state
+        setFirstName(data.firstName || ""); //update user's FirstName in the state
+        setLastName(data.lastName || ""); //update user's lastName in the state
+        setCountry(data.country || ""); //update user's country in the state
+        setCity(data.city || ""); //update user's city in the state
+        setBirthDate(data.birthDate || ""); //update birthDate city in the state
         setEmail(data.email || ""); //update user's email in the state
         setCount((count) => count + 1); //set count for the looping to stop
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [updateInfo]);
 
   const handleShow = () => {
     setShow(true);
@@ -39,11 +51,14 @@ function EditUserInfo({ userId }) {
     e.preventDefault();
 
     axios
-      .post(baseUrl + "/" + userId + "/update", { username, name, email }) //update user info, replaced the :userId placeholder for the actual userId
+      .put(baseUrl + "/" + userId + "/update", { username, firstName, lastName, city, country, birthDate, email }) //update user info, replaced the :userId placeholder for the actual userId
       .then((response) => {
         const updatedUser = response.data; // server returns the updated user info
         console.log(updatedUser);
         handleClose(); //close modal (process complete)
+        navigate("/profile");
+        // window.location.reload(); //reload the page to display the updated info
+        setUpdateInfo(!updateInfo);
       })
       .catch((err) => console.error(err));
   };
@@ -58,8 +73,14 @@ function EditUserInfo({ userId }) {
         </div>
 
         <div className="mb-3">
-          <label htmlFor="nameInput" className="form-label">
-            Name: {userInfo.name}
+          <label htmlFor="firstNameInput" className="form-label">
+            First Name: {userInfo.firstName}
+          </label>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="lastNameInput" className="form-label">
+            Last Name: {userInfo.lastName}
           </label>
         </div>
 
@@ -68,6 +89,26 @@ function EditUserInfo({ userId }) {
             Email: {userInfo.email}
           </label>
         </div>
+
+        <div className="mb-3">
+          <label htmlFor="countryInput" className="form-label">
+            Country: {userInfo.country}
+          </label>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="cityInput" className="form-label">
+            City: {userInfo.city}
+          </label>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="birthDateInput" className="form-label">
+            Birth Date: {userInfo.birthDate}
+          </label>
+        </div>
+
+
       </div>
 
       <Button variant="primary" onClick={handleShow}>
@@ -84,19 +125,56 @@ function EditUserInfo({ userId }) {
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Username"
+                placeholder="Enter User Name"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
                 autoFocus
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Label>Name</Form.Label>
+            <Form.Group className="mb-3" controlId="formBasicFirstName">
+              <Form.Label>First Name</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter First Name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicLastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Last Name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCity">
+              <Form.Label>City</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter City"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicCountry">
+              <Form.Label>Country</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicBirthDate">
+              <Form.Label>Birth Date</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Birth Date"
+                value={birthDate}
+                onChange={(e) => setBirthDate(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
