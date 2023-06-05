@@ -41,7 +41,6 @@ function EditUserInfo({ userId }) {
   const submitHandler = (e) => {
     e.preventDefault();
 
-    console.log('user:' + username + ", " + name + ", " + email);
     axios
       .post(baseUrl + "/" + userId + "/update", { username, name, email }) //update user info, replaced the :userId placeholder for the actual userId
       .then((response) => {
