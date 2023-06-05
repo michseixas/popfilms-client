@@ -7,6 +7,9 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../contexts/auth.context";
 import { signup } from "../services/auth.service";
 
+
+let baseUrl = "http://localhost:5005/auth";
+
 function SignupModal() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -15,9 +18,32 @@ function SignupModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordRepeat, setPasswordRepeat] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { isLoggedIn, loading, signupIsOk } = useContext(authContext);
+  const [loadingAvatar, setLoadingAvatar] = useState(false);
+
+
+  const handleFileUpload = (e) => {
+    // console.log("The file to be uploaded is: ", e.target.files[0]);
+    setLoadingAvatar(true)
+
+
+    const uploadData = new FormData();
+
+    // imageUrl => this name has to be the same as in the model since we pass
+    // req.body to .create() method when creating a new movie in '/api/movies' POST route
+    uploadData.append("imageUrl", e.target.files[0]);
+    axios.post(baseUrl + '/upload', uploadData)
+      .then(response => {
+        console.log("response is: ", response);
+        // response carries "fileUrl" which we can use to update the state
+        setImageUrl(response.data.fileUrl);
+        setLoadingAvatar(false)
+      })
+      .catch(err => console.log("Error while uploading the file: ", err));
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -34,11 +60,10 @@ function SignupModal() {
       return;
     }
 
-    const user = { username, email, password };
+    const user = { username, email, password, imageUrl };
 
-    // axios
-    //   .post(baseUrl + "/signup", user)
-    signup(user)
+    if (!loadingAvatar) {
+      signup(user)
       .then((resp) => {
         console.log(resp);
         signupIsOk();//We call this function from the auth.context to set the signup ok to true so the login page can show the confirmation alert.
@@ -48,6 +73,10 @@ function SignupModal() {
         console.log(err);
         setError(err.response.data.message);
       });
+    } else {
+      console.log("Please upload an image");
+    }
+
   };
 
   if (!loading && isLoggedIn) return <Navigate to="/" />;
@@ -120,7 +149,23 @@ function SignupModal() {
                 onChange={(e) => setPasswordRepeat(e.target.value)}
             />
             </div>
-            <button type="submit" className="btn btn-primary" onClick={handleClose}>
+{/* //cloudinary start*/}
+            <div className="mb-3">
+            <label htmlFor="imageUrl" className="form-label">
+                Upload image
+            </label>
+            <input
+                type="file"
+                className="form-control"
+                id="imageUrl"
+                // value={imageUrl}
+                onChange={(e) => handleFileUpload(e)}
+            />
+            {loadingAvatar && <p>Image is loading.....</p>}
+            </div>
+{/* //cloudinary end */}
+
+            <button type="submit" className="btn btn-primary" onClick={handleClose} disabled={loadingAvatar}>
             Signup
             </button>
         </form>

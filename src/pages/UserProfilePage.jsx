@@ -51,7 +51,7 @@ function UserProfilePage() {
       <h1>This is the Profile page for our users</h1>
 
       <div>
-        <img src={userInfo.image} alt="Avatar" className="img-fluid" />
+        <img src={userInfo.imageUrl} alt="Avatar" className="img-fluid" />
         <input type="file" onChange={handleUpdateAvatar} />
       </div>
 
