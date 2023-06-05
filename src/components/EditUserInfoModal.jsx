@@ -4,7 +4,6 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { getUserInfo } from "../services/user.service";
-import { updateUserInfo } from "../services/user.service";
 
 let baseUrl = "http://localhost:5005/user";
 
@@ -13,11 +12,9 @@ function EditUserInfo({ userId }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const [userInfo, setUserInfo] = useState({});
-
   const [username, setUserName] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  
   const [count, setCount] = useState(0);
 
   useEffect(() => {

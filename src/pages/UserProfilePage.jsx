@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { authContext } from "../contexts/auth.context";
 import { getUserInfo } from "../services/user.service";
 import { deleteUser } from "../services/user.service";
-import { updateUserInfo } from "../services/user.service";
-import { updateImage } from "../services/user.service";
 import EditUserInfo from "../components/EditUserInfoModal";
 
 function UserProfilePage() {
