@@ -1,0 +1,40 @@
+import { Container, Row, Col } from "react-bootstrap";
+
+function MovieDetailInfo({ movie }) {
+    console.log("que trae movie objeto", movie)
+  return (
+    <Container>
+      <Row>
+        <Col lg={5} className="offset-lg-1">
+          <img
+            src={movie.image}
+            alt={movie.title}
+            style={{ maxWidth: "70%" }}
+          />
+        </Col>
+        <Col lg={4}>
+          <div>
+            <h1>{movie.title}</h1>
+          </div>
+          <div>
+            <p>{movie.year}</p>
+          </div>
+          <div>
+            <p>{movie.directors}</p>
+          </div>
+          <div>
+            <p>{movie.plot}</p>
+          </div>
+          <div>
+            <p>{movie.stars}</p>
+          </div>
+          <div>
+            <p>{movie.genres}</p>
+          </div>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+export default MovieDetailInfo;
