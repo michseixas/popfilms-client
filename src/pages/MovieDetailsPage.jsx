@@ -1,7 +1,13 @@
-import React from 'react';
-import { likeMovie } from '../services/user.service';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
+import { likeMovie } from '../services/user.service';
 import { useParams, Link } from 'react-router-dom';
+
+//Check
+import Navbar from '../components/Navbar';
+
+
+
 
 function MovieDetailsPage() {
   let {movieId} = useParams();
@@ -36,7 +42,7 @@ return (
               <p>Created at: {movie.createdAt}</p>
           </div>
       </div>}
-      <div><Link to="/apartments">Go back</Link></div>
+      <div><Link to="/movieListPage">Go back</Link></div>
   </div>
 )
   
