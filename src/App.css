@@ -1,4 +1,17 @@
 .carousel-wrapper {
     width: 70%;
   }
+
+  .responsive-image {
+    position: relative;
+    width: 100%;
+    padding-bottom: 160%; /* Adjust this value to control the aspect ratio */
+  }
+  
+  .responsive-image img {
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
   

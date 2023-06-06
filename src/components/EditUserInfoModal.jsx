@@ -172,7 +172,7 @@ function EditUserInfo({ userId }) {
               <Form.Label>Birth Date</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter Birth Date"
+                placeholder="Enter MM-DD-YYYY"
                 value={birthDate}
                 onChange={(e) => setBirthDate(e.target.value)}
               />
