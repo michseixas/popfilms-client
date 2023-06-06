@@ -36,6 +36,7 @@ function MoviesListPage() {
                   <h5 className="card-title">{movie.title}</h5>
                   <p className="card-text">{movie.description}</p>
                   <div className = "imageDisplayed"> <img src={movie.image} alt={movie.title} /></div>
+                  <Link to={`/moviesDetailsPage/${movie._id}`}>More details</Link>
                   {}
                 </div>
               </div>
@@ -46,5 +47,8 @@ function MoviesListPage() {
     </div>
   );
 }
+
+
+///falta link per connectar amb moviedetails
 
 export default MoviesListPage;
