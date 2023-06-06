@@ -8,12 +8,12 @@ function CarouselCard() {
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/images/godfather1.jpg"
+              src="/images/shawshank-redemption.webp"
               alt="First slide"
             />
             <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h3>Top 250 Movies</h3>
+              <p>Unforgettable stories on the silver screen.</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -24,22 +24,33 @@ function CarouselCard() {
             />
 
             <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h3>Most Popular Movies</h3>
+              <p>The blockbusters that captivate the world.</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
             <img
               className="d-block w-100"
-              src="/images/shawshank-redemption.webp"
+              src="/images/thelittlemermaid1.jpg"
               alt="Third slide"
             />
 
             <Carousel.Caption>
-              <h3>Third slide label</h3>
+              <h3>Theater Movies</h3>
               <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+              Immerse yourself in the magic of the big screen.
               </p>
+            </Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="/images/theflash.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption>
+              <h3>Coming Soon</h3>
+              <p>Get ready for the next cinematic masterpiece.</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>

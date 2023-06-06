@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getTheater, getMoviesByType } from "../services/imdb.service";
+import { getMoviesByType } from "../services/imdb.service";
 import { Navigate, useParams } from 'react-router-dom';
 
 function MoviesListPage() {
