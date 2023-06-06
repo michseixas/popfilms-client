@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getTheater, getMoviesByType } from "../services/imdb.service";
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, Link } from 'react-router-dom';
 
 function MoviesListPage() {
   const [movies, setMovies] = useState([]);
@@ -44,9 +44,8 @@ function MoviesListPage() {
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
                   <p className="card-text">{movie.description}</p>
-                  {/* <div className = "imageDisplayed"> <img src={movie.image} alt={movie.title} /></div>
-                  <Link to={`/moviesDetailsPage/${movie._id}`}>More details</Link> */}
                   <div className = "imageDisplayed responsive-image"> <img src={movie.image} alt={movie.title} /></div>
+                  <Link to={`/movies/${movie.id}`}>Details</Link>
                   {}
                 </div>
               </div>
@@ -57,8 +56,5 @@ function MoviesListPage() {
     </div>
   );
 }
-
-
-///falta link per connectar amb moviedetails
 
 export default MoviesListPage;

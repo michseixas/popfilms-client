@@ -2,6 +2,13 @@ import axios from 'axios';
 let baseUrl = 'https://imdb-api.com/en/API';
 
 
+
+
+const getMovieDetails = (movieId) => {
+   
+    return axios.get(`https://imdb-api.com/en/API/Title/k_xmndj5an/${movieId}`)};
+
+
 const getTheater = () => {
     return axios.get(baseUrl + '/InTheaters/k_xmndj5an')};
 
@@ -24,4 +31,4 @@ const getMoviesByType = (type) => {
     }
 };
 
-export {getTheater, get250Top, getMoviesByType};    
+export {getTheater, get250Top, getMoviesByType, getMovieDetails};    
