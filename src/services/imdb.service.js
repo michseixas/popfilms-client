@@ -13,13 +13,13 @@ const getMoviesByType = (type) => {
     if (type === 'top250') {
         return axios.get(baseUrl + '/Top250Movies/k_xmndj5an');
     } 
-    if (type === 'theater') {
+    else if (type === 'theater') {
         return axios.get(baseUrl + '/InTheaters/k_xmndj5an');
     } 
-    if (type === 'mostpopular') {
+    else if (type === 'mostpopular') {
         return axios.get(baseUrl + '/MostPopularMovies/k_xmndj5an');
     } 
-    if (type === 'comingsoon') {
+    else if (type === 'comingsoon') {
         return axios.get(baseUrl + '/ComingSoon/k_xmndj5an') 
     }
 };

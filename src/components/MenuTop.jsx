@@ -11,10 +11,10 @@ function MenuTop() {
         <Col>
             <h1>Movies</h1>
             <ul>
-                <li><Link onClick={handleClose} to="/moviesListType/top250"> Top 250 Movies</Link></li>
-                <li><Link onClick={handleClose} to="/moviesListType/mostpopular"> Most Popular Movies</Link></li>
-                <li><Link onClick={handleClose} to="/moviesListType/theater"> Theater Movies</Link></li>
-                <li><Link onClick={handleClose} to="/moviesListType/comingsoon"> Coming Soon</Link></li>
+                <li><Link onClick={handleClose} to="/top250"> Top 250 Movies</Link></li>
+                <li><Link onClick={handleClose} to="/mostpopular"> Most Popular Movies</Link></li>
+                <li><Link onClick={handleClose} to="/theater"> Theater Movies</Link></li>
+                <li><Link onClick={handleClose} to="/comingsoon"> Coming Soon</Link></li>
             </ul>
         </Col>
         <Col>

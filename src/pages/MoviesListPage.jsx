@@ -20,9 +20,9 @@ function MoviesListPage() {
 
   let title = ""
   if (listId === "top250") title = "Top 250 Movies of all times"
-  if (listId === "mostpopular") title = "Most Popular Movies"
-  if (listId === "theater") title = "New Movies in Theaters Now"
-  if (listId === "comingsoon") title = "Coming soon"
+  else if (listId === "mostpopular") title = "Most Popular Movies"
+  else if (listId === "theater") title = "New Movies in Theaters Now"
+  else if (listId === "comingsoon") title = "Coming soon"
 
   return (
     <div>
