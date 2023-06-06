@@ -1,6 +1,16 @@
 import axios from 'axios';
 let baseUrl = 'https://imdb-api.com/en/API';
 
+
+
+
+const getMovieDetails = (movieId) => {
+   
+    return axios.get(`https://imdb-api.com/en/API/Title/k_xmndj5an/${movieId}`)};
+
+
+  
+
 const getMoviesByType = (type) => {
     console.log( "que es lo que trae type----???", type)
     if (type === 'top250') {
@@ -17,4 +27,4 @@ const getMoviesByType = (type) => {
     }
 };
 
-export {getMoviesByType};    
+export {getMoviesByType, getMovieDetails};    

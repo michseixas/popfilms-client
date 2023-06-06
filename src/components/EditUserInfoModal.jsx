@@ -22,6 +22,8 @@ function EditUserInfo({ userId }) {
   const [count, setCount] = useState(0);
   const [updateInfo, setUpdateInfo] = useState(false);
   const navigate = useNavigate();
+  // const [image, setImage] = useState('');
+  // const [userId, setUserId] = useState('');
 
   const handleClose = () => setShow(false);
 
@@ -51,7 +53,15 @@ function EditUserInfo({ userId }) {
     e.preventDefault();
 
     axios
-      .put(baseUrl + "/" + userId + "/update", { username, firstName, lastName, city, country, birthDate, email }) //update user info, replaced the :userId placeholder for the actual userId
+      .put(baseUrl + "/" + userId + "/update", {
+        username,
+        firstName,
+        lastName,
+        city,
+        country,
+        birthDate,
+        email,
+      }) //update user info, replaced the :userId placeholder for the actual userId
       .then((response) => {
         const updatedUser = response.data; // server returns the updated user info
         console.log(updatedUser);
@@ -62,6 +72,17 @@ function EditUserInfo({ userId }) {
       })
       .catch((err) => console.error(err));
   };
+
+  //   axios
+  //     .post(baseUrl + '/' + userId +{ image }) // Make a POST request to the backend route
+  //     .then((response) => {
+  //       // Handle the response if needed
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
   return (
     <>
@@ -107,8 +128,6 @@ function EditUserInfo({ userId }) {
             Birth Date: {userInfo.birthDate}
           </label>
         </div>
-
-
       </div>
 
       <Button variant="primary" onClick={handleShow}>

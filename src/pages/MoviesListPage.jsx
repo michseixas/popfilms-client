@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getMoviesByType } from "../services/imdb.service";
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, Link } from 'react-router-dom';
 
 function MoviesListPage() {
   const [movies, setMovies] = useState([]);
@@ -45,6 +45,7 @@ function MoviesListPage() {
                   <h5 className="card-title">{movie.title}</h5>
                   <p className="card-text">{movie.description}</p>
                   <div className = "imageDisplayed responsive-image"> <img src={movie.image} alt={movie.title} /></div>
+                  <Link to={`/movies/${movie.id}`}>Details</Link>
                   {}
                 </div>
               </div>

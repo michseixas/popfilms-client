@@ -31,6 +31,10 @@ function UserProfilePage() {
   const handleUpdateAvatar = (event) => {
     console.log("Update avatar");
     const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file); // Generate a temporary URL for the selected image
+      setUserInfo((prevUserInfo) => ({ ...prevUserInfo, imageUrl })); // Update the imageUrl in the userInfo state
+    }
     setAvatarFile(file);
   };
 
@@ -51,10 +55,9 @@ function UserProfilePage() {
 
       <div>
         <img src={userInfo.imageUrl} alt="Avatar" className="img-fluid" />
-        <input type="file" onChange={handleUpdateAvatar} />
+        <input type="file" className="btn btn-outline-dark" onChange={handleUpdateAvatar} accept="image/*" />
       </div>
-
-      {/* {user && <EditUserInfo userId={user._id} />} */}
+      
       <EditUserInfo userId={user._id} />
       <div>
         <button type="submit" className="btn btn-danger" onClick={handleDeleteProfile}>
