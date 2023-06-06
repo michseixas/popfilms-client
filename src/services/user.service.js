@@ -1,5 +1,6 @@
 import axios from 'axios';
 let baseUrl = 'http://localhost:5005/user';
+// let baseUrl2 = 'https://imdb-api.com/en/API';
 
 
 //this function will be called on the front end on the page that we need. In this case, the user profile
@@ -23,6 +24,11 @@ const deleteUser= (userId) => {
 const updateImage= (userId, newImage) => {
     return axios.post(baseUrl + '/:userId/updateImage', {image: newImage})
 }
+
+//populate movie by Id
+// const movieId= (movieId) => {
+//     axios.get(baseUrl2 + '/' + movieId)
+// };
 
 // const likeMovie = () => {
 //     return axios.post(baseUrl + '/:userId/likeMovie')
