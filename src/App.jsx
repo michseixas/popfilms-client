@@ -7,6 +7,7 @@ import LogoutPage from "./pages/LogoutPage";
 import UserProfilePage from "./pages/UserProfilePage";
 import MoviesListPage from "./pages/MoviesListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
+import AddComment from "./pages/MovieDetailsPage";
 import ErrorPage from "./pages/ErrorPage";
 import Footer from "./components/Footer";
 import "./App.css";
@@ -23,6 +24,7 @@ function App() {
           <Route path="/profile" element={<UserProfilePage />} />
           <Route path="/:listId" element={<MoviesListPage />} />
           <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
+          <Route path="/:movieId/addComment" element={<AddComment />}/> 
           <Route path="*" element={<ErrorPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />

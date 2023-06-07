@@ -3,7 +3,6 @@ let baseUrl = 'https://imdb-api.com/en/API';
 
 
 
-
 const getMovieDetails = (movieId) => {
    
     return axios.get(`https://imdb-api.com/en/API/Title/k_xmndj5an/${movieId}`)};

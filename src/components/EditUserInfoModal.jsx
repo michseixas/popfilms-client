@@ -17,13 +17,10 @@ function EditUserInfo({ userId }) {
   const [lastName, setLastName] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
-  const [birthDate, setBirthDate] = useState("");
   const [email, setEmail] = useState("");
   const [count, setCount] = useState(0);
   const [updateInfo, setUpdateInfo] = useState(false);
   const navigate = useNavigate();
-  // const [image, setImage] = useState('');
-  // const [userId, setUserId] = useState('');
 
   const handleClose = () => setShow(false);
 
@@ -38,7 +35,6 @@ function EditUserInfo({ userId }) {
         setLastName(data.lastName || ""); //update user's lastName in the state
         setCountry(data.country || ""); //update user's country in the state
         setCity(data.city || ""); //update user's city in the state
-        setBirthDate(data.birthDate || ""); //update birthDate city in the state
         setEmail(data.email || ""); //update user's email in the state
         setCount((count) => count + 1); //set count for the looping to stop
       })
@@ -59,7 +55,6 @@ function EditUserInfo({ userId }) {
         lastName,
         city,
         country,
-        birthDate,
         email,
       }) //update user info, replaced the :userId placeholder for the actual userId
       .then((response) => {
@@ -72,17 +67,6 @@ function EditUserInfo({ userId }) {
       })
       .catch((err) => console.error(err));
   };
-
-  //   axios
-  //     .post(baseUrl + '/' + userId +{ image }) // Make a POST request to the backend route
-  //     .then((response) => {
-  //       // Handle the response if needed
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
 
   return (
     <>
@@ -120,12 +104,6 @@ function EditUserInfo({ userId }) {
         <div className="mb-3">
           <label htmlFor="cityInput" className="form-label">
             City: {userInfo.city}
-          </label>
-        </div>
-
-        <div className="mb-3">
-          <label htmlFor="birthDateInput" className="form-label">
-            Birth Date: {userInfo.birthDate}
           </label>
         </div>
       </div>
@@ -185,15 +163,6 @@ function EditUserInfo({ userId }) {
                 placeholder="Enter Country"
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicBirthDate">
-              <Form.Label>Birth Date</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter MM-DD-YYYY"
-                value={birthDate}
-                onChange={(e) => setBirthDate(e.target.value)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
