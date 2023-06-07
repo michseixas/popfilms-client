@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { getUserInfo } from "../services/user.service";
+import { authContext } from "../contexts/auth.context";
 
 let baseUrl = "http://localhost:5005/user";
 
@@ -21,6 +22,7 @@ function EditUserInfo({ userId }) {
   const [count, setCount] = useState(0);
   const [updateInfo, setUpdateInfo] = useState(false);
   const navigate = useNavigate();
+  const { isPremium , setIsPremium } = useContext(authContext);
 
   const handleClose = () => setShow(false);
 
@@ -37,6 +39,7 @@ function EditUserInfo({ userId }) {
         setCity(data.city || ""); //update user's city in the state
         setEmail(data.email || ""); //update user's email in the state
         setCount((count) => count + 1); //set count for the looping to stop
+        setIsPremium(data.isPremium); //update user's role in the state
       })
       .catch((error) => console.error(error));
   }, [updateInfo]);
@@ -56,10 +59,12 @@ function EditUserInfo({ userId }) {
         city,
         country,
         email,
+        isPremium: Boolean(isPremium),
       }) //update user info, replaced the :userId placeholder for the actual userId
       .then((response) => {
         const updatedUser = response.data; // server returns the updated user info
         console.log(updatedUser);
+        setIsPremium(response.data.isPremium);
         handleClose(); //close modal (process complete)
         navigate("/profile");
         // window.location.reload(); //reload the page to display the updated info
@@ -86,6 +91,12 @@ function EditUserInfo({ userId }) {
         <div className="mb-3">
           <label htmlFor="lastNameInput" className="form-label">
             Last Name: {userInfo.lastName}
+          </label>
+        </div>
+
+        <div className="mb-3">
+          <label htmlFor="isPremiumInput" className="form-label">
+            Premium user: {userInfo.isPremium ? "yes" : "no"}
           </label>
         </div>
 
@@ -147,6 +158,16 @@ function EditUserInfo({ userId }) {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPremium">
+              <Form.Label>Premium</Form.Label>
+            <Form.Check // prettier-ignore
+                type="checkbox"
+                id="isPremium"
+                checked={isPremium} 
+                label="Check for Premium Access"
+                onChange={(e) => setIsPremium(e.target.checked)}
+              />
+              </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCity">
               <Form.Label>City</Form.Label>
               <Form.Control

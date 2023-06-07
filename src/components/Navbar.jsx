@@ -10,8 +10,9 @@ import FilterForm from "./FilterForm";
 import filterMovies from "../pages/MoviesListPage"
 
 
+
 const Navbar = () => {
-  const { isLoggedIn, user, loading } = useContext(authContext);
+  const { isLoggedIn, user, loading, isPremium } = useContext(authContext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -66,7 +67,7 @@ const Navbar = () => {
         {!loading && isLoggedIn && (
           <>
             <li className="nav-item">
-              <span className="navbar-brand">Hi {user.username}!</span>
+              <span className="navbar-brand">Hi {user.username}! &nbsp; {(isPremium ? <img src="/images/vidicon-2-fill.png"/> : " ")}</span>
             </li>
             <li className="nav-item">
               <Link to="/logout" className="navbar-brand">

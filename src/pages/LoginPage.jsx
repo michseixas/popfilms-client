@@ -12,7 +12,7 @@ function LoginPage(props) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const { isAuthenticated, isLoggedIn, loading , signupOk, signupDone} = useContext(authContext);
+  const { isAuthenticated, isLoggedIn, loading , signupOk, isPremium, signupDone} = useContext(authContext);
 
   const submitHandler = (e) => {
     e.preventDefault();

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect , useContext } from "react";
 import { likeMovie } from "../services/user.service";
 import { useParams, Link } from "react-router-dom";
 import { getMovieDetails } from "../services/imdb.service";
 import CreateComment from "../components/CreateComment";
 import MovieDetailInfo from "../components/MovieDetailInfo";
+import { authContext } from "../contexts/auth.context";
 import axios from "axios";
 
 let baseUrl = "http://localhost:5005/movie";
@@ -12,6 +13,7 @@ let baseUrl = "http://localhost:5005/movie";
 
 function MovieDetailsPage() {
   //state variables section: store and update the data of the component
+  const { isLoggedIn, user, isPremium } = useContext(authContext);
   let { movieId } = useParams();
   const [movie, setMovie] = useState({});
   const [loading, setLoading] = useState(true);
@@ -95,18 +97,24 @@ console.log('COMENTS-----------', comments)
         <Link to="/movieListPage">Go back</Link>
       </div>
 
-      <div>
-      <CreateComment movieId={movieId} addCommentHandler={addCommentHandler} />
-      </div>
-
-      <div>
-      {comments.map((comment, index) => (
-        <div key={index}>
-          <p>{comment.comment}</p>
-          <p>By: {comment.author}</p>
-       </div>
-        ))}
-      </div>
+      {!loading && isPremium && ( // Premium Content Here!!!
+          <>
+            <div>
+              <CreateComment
+                movieId={movieId}
+                addCommentHandler={addCommentHandler}
+              />
+            </div>
+            <div>
+              {comments.map((comment, index) => (
+                <div key={index}>
+                  <p>{comment.comment}</p>
+                  <p>By: {comment.author}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
     </div>
   );
 }

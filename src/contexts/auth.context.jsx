@@ -1,5 +1,4 @@
 import axios from "axios";
-
 import { createContext, useEffect, useState } from "react";
 
 const authContext = createContext();
@@ -11,6 +10,7 @@ function AuthProviderWrapper({children}){
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isPremium, setIsPremium] = useState(false);
 
     useEffect(()=>{
         isAuthenticated();
@@ -29,7 +29,6 @@ function AuthProviderWrapper({children}){
         setSignupOk(false); //This is when the signupOk variable is set to false. This will hide the alert if you are already signed up and want to login again.
     }
 
-
     const isAuthenticated = () => {
         //get a token:
         let token = localStorage.getItem('authToken');
@@ -38,16 +37,19 @@ function AuthProviderWrapper({children}){
             .then(({data}) => {
                 setIsLoggedIn(true);
                 setUser(data);
+                setIsPremium(data.isPremium);
                 setLoading(false);
             })
             .catch(err => {
                 setIsLoggedIn(false);
+                setIsPremium(false);
                 setUser(null);
                 setLoading(false);
             })
         } else {
             setIsLoggedIn(false);
             setUser(null);
+            setIsPremium(false);
             setLoading(false);
         }
     }
@@ -60,7 +62,9 @@ function AuthProviderWrapper({children}){
         getHeaders,
         signupOk,
         signupIsOk,
-        signupDone
+        signupDone,
+        isPremium,
+        setIsPremium
     }
     return(<authContext.Provider value={exposedValues}>
         {children}
