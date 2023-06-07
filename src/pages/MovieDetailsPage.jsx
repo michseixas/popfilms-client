@@ -81,15 +81,15 @@ function MovieDetailsPage() {
         </div>
       )}
 
-      {!loading && (
-        <div className="card">
+      {/* This became the MovieDetailInfo component above */}
+      {!loading && <div className="card">
           <img src={movie.image} className="card-img-top" alt={movie.title} />
           <div className="card-body">
-            <h1 className="card-title">{movie.title}</h1>
-            <p className="card-text"> {movie.plot}</p>
+              <h1 className="card-title">{movie.title}</h1>
+              <p className="card-text"> {movie.plot}</p>
           </div>
-        </div>
-      )}
+      </div>}
+
       <button onClick={() => handleLikeMovie()}>Like</button>
       <div>
         <Link to="/movieListPage">Go back</Link>
