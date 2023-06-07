@@ -8,6 +8,7 @@ function MovieDetailInfo({ movie }) {
         <Col lg={5} className="offset-lg-1">
           <img
             src={movie.image}
+            loading="lazy"
             alt={movie.title}
             style={{ maxWidth: "70%" }}
           />
