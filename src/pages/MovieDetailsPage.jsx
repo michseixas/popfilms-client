@@ -8,8 +8,6 @@ import axios from "axios";
 
 let baseUrl = "http://localhost:5005/movie";
 
-
-
 function MovieDetailsPage() {
   //state variables section: store and update the data of the component
   let { movieId } = useParams();
@@ -17,6 +15,9 @@ function MovieDetailsPage() {
   const [loading, setLoading] = useState(true);
   const [comments, setComments] = useState([]);
   const [count, setCount] = useState(0);
+  const [rating, setRating]= useState(null);
+  const [fetchingRating, setFetchingRating]= useState(true);
+  const [submitMessage, setSubmitMessage] = useState("");
 
   useEffect(() => {
     console.log("viendo movieId", movieId);
@@ -25,52 +26,78 @@ function MovieDetailsPage() {
         console.log("results: ", resp.data);
         setMovie(resp.data);
         setLoading(false);
+        //insert here a method to get the ratings for the current movieId. Will need to implement a get method on the server to return a list with all the ratings for the current movie and then sum all the ratings and divide to get an avarage of the rating, then display this avarage on a label call movieRating.
       })
       .catch((err) => console.log(err));
 
+    axios
+      .get(baseUrl + "/" + movieId + "/getComments")
+      .then((response) => {
+        const data = response.data;
+        // console.log(data);
+        setComments(data.comments);
+        setCount((count) => count + 1);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-      axios.get(baseUrl + "/" + movieId + "/getComments")
-  .then((response)=> {
-    const data = response.data;
-    console.log(data);
-    setComments(data.comments);
-    setCount((count) => count + 1);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+      //Fetching the rating for the movie
+        axios.get(baseUrl + "/" + movieId + "/rate") //get request from API by Id of the movie
+          .then((response) => {
+            const data = response.data; //data from the server(rating info)
+            setRating(data.rating); //update rating in the state
+            setFetchingRating(false);//update rating in the state to false so rating is fetched
+          })
+          .catch((error) => {
+            console.log(error);
+            setFetchingRating(false);
+          });
   }, [movieId]);
 
-useEffect(() => {
-console.log('COMENTS-----------', comments)
-}, comments)
   const handleLikeMovie = () => {
     // Call the likeMovie function
     likeMovie(movieId)
       .then((response) => {
-        console.log(response)
-        // Handle the successful response
+        console.log(response);
         console.log("Movie liked successfully.");
       })
       .catch((error) => {
-        // Handle the error
         console.log("Error liking the movie:", error);
       });
   };
-
-  // You have to add the handler for "addComment" on MoviesDetailPage because you said on App.jsx routes that the place where you handle the addComment post in the CreateComment component, is this MoviesDetailsPage. Now, when adding the handler for the "addComment", you need to connect to the server and send a post to the server route that handles the creation of a comment (server in movie.routes.js). Don't forget to add the server URL at the top (look at how you added users to the DB and/or how you EDIT user profile)
 
   const addCommentHandler = (commentData) => {
     axios
       .post(baseUrl + "/" + movieId + "/addComment", commentData)
       .then((response) => {
-        console.log('Comment added successfully:', response.data);
+        console.log("Comment added successfully:", response.data);
       })
       .catch((error) => {
-        console.error('Error adding comment:', error);
+        console.error("Error adding comment:", error);
       });
   };
 
+  const handleRatingChange = (event) => { //extract the updated rating value and and update it 
+    setRating(parseInt(event.target.value)); //change the value of rating
+  };
+
+  const handleRatingsSubmit= () => {
+    if(rating === 0) {  //No rating available
+      console.log("Please select a rating.") //select a rating
+      return;
+    }
+    console.log('Submitting rating:', rating); //submit rating
+
+  axios.post(baseUrl + "/" + movieId + "/rate", { rating: rating }) //send axios.post request to backend route
+  .then((response)=>{
+    console.log(response.data); //see data from backend
+  })
+  .catch((error)=> {
+    console.error("Error submitting rating:", error);
+  })
+}
+  
   return (
     <div>
       <br />
@@ -96,21 +123,38 @@ console.log('COMENTS-----------', comments)
       </div>
 
       <div>
-      <CreateComment movieId={movieId} addCommentHandler={addCommentHandler} />
+        <CreateComment
+          movieId={movieId}
+          addCommentHandler={addCommentHandler}
+        />
       </div>
 
       <div>
-      {comments.map((comment, index) => (
-        <div key={index}>
-          <p>{comment.comment}</p>
-          <p>By: {comment.author}</p>
-       </div>
+        {comments.map((comment, index) => (
+          <div key={index}>
+            <p>{comment.comment}</p>
+            <p>{comment.author}</p>
+          </div>
         ))}
       </div>
+
+      <div>
+      <div>
+        <p>Rate the movie:</p>
+        <select value={rating || ''} onChange={handleRatingChange}>
+          <option value="">Select rating</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        <div>{submitMessage}</div>
+        <button onClick={handleRatingsSubmit}>Submit Rating</button>
+      </div>
+    </div>
     </div>
   );
 }
-
-
 
 export default MovieDetailsPage;
