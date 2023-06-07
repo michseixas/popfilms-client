@@ -28,8 +28,9 @@ function MovieDetailsPage() {
 
   const handleLikeMovie = () => {
     // Call the likeMovie function
-    likeMovie()
+    likeMovie(movieId)
       .then((response) => {
+        console.log(response)
         // Handle the successful response
         console.log("Movie liked successfully.");
       })

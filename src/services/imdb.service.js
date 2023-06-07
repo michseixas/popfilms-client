@@ -7,7 +7,16 @@ const getMovieDetails = (movieId) => {
    
     return axios.get(`https://imdb-api.com/en/API/Title/k_xmndj5an/${movieId}`)};
 
+    
 
+const getLikedMovies = (arrayMovieId) => {
+        //arrayMovieId = ['236571', 'A3472R', '329898']
+        let resMovies = arrayMovieId.map(movieId => {
+            return getMovieDetails(movieId);
+           
+        })
+        return Promise.all(resMovies)
+    }
   
 
 const getMoviesByType = (type) => {
@@ -26,4 +35,4 @@ const getMoviesByType = (type) => {
     }
 };
 
-export {getMoviesByType, getMovieDetails};    
+export {getMoviesByType, getMovieDetails, getLikedMovies};    
