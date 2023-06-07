@@ -12,12 +12,14 @@ import ErrorPage from "./pages/ErrorPage";
 import Footer from "./components/Footer";
 import "./App.css";
 import { AuthProviderWrapper } from "./contexts/auth.context";
+import { FilterProviderWrapper } from "./contexts/filter.context";
 
 function App() {
   return (
     <>
 
       <AuthProviderWrapper>
+      <FilterProviderWrapper>
       <Navbar />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -30,6 +32,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
         </Routes>
+        </FilterProviderWrapper>
       </AuthProviderWrapper>
       <Footer />
     </>

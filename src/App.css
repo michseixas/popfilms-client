@@ -5,7 +5,7 @@
   .responsive-image {
     position: relative;
     width: 100%;
-    padding-bottom: 160%; /* Adjust this value to control the aspect ratio */
+    padding-bottom: 160%; 
   }
   
   .responsive-image img {
@@ -14,3 +14,9 @@
     width: 100%;
     height: 100%;
   }
+
+  .carousel-image {
+    height: 700px; 
+    object-fit: cover;
+  }
+  
