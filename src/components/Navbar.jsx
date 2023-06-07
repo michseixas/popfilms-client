@@ -6,12 +6,31 @@ import LoginModal from "./LoginModal";
 import Button from "react-bootstrap/Button";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import MenuTop from "../components/MenuTop";
+import FilterForm from "./FilterForm";
+import filterMovies from "../pages/MoviesListPage"
+
 
 const Navbar = () => {
   const { isLoggedIn, user, loading } = useContext(authContext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [filteredMovies, setFilteredMovies] = useState([]); 
+
+  // filters a list of movies based on a text input and update the filtered movies state or variable.
+  const filteredSearch = (text) => {
+    if (text === "") {
+      setFilteredMovies(movies); // Set filteredMovies to the complete array of movies
+    } else {
+      filterMovies
+      // setFilteredMovies(
+      //   movies.filter((movie) =>
+      //     movie.title.toLowerCase().includes(text.toLowerCase())
+      //   )
+      // );
+    }
+  };
+
 
   return (
     <nav
@@ -32,7 +51,7 @@ const Navbar = () => {
           <MenuTop/>
           </Offcanvas.Body>
         </Offcanvas>
-        <form className="d-flex flex-grow-1" role="search">
+        {/* <form className="d-flex flex-grow-1" role="search">
           <input
             className="form-control me-2"
             type="search"
@@ -42,7 +61,8 @@ const Navbar = () => {
           <button className="btn btn-outline-success" type="submit">
             Search
           </button>
-        </form>
+        </form> */}
+        <FilterForm filterFunction={filteredSearch} />
         {!loading && isLoggedIn && (
           <>
             <li className="nav-item">
