@@ -3,9 +3,10 @@ import { likeMovie } from "../services/user.service";
 import { useParams, Link } from "react-router-dom";
 import { getMovieDetails } from "../services/imdb.service";
 import CreateComment from "../components/CreateComment";
-import axios from "axios";
+import MovieDetailInfo from "../components/MovieDetailInfo";
+// import axios from "axios";
 
-let baseUrl = "https://imdb-api.com/en/API"
+let baseUrl = "https://imdb-api.com/en/API";
 
 function MovieDetailsPage() {
   //state variables section: store and update the data of the component
@@ -50,7 +51,6 @@ function MovieDetailsPage() {
   //       console.error('Error adding comment:', error);
   //     });
   // };
-  
 
   // useEffect(() => {
   //   getCommentsForMovie(movieId)
@@ -75,6 +75,8 @@ function MovieDetailsPage() {
 
   return (
     <div>
+      <br />
+      <MovieDetailInfo movie={movie} />
       {loading && (
         <div className="spinner-grow" role="status">
           <span className="visually-hidden">Loading...</span>
@@ -82,13 +84,13 @@ function MovieDetailsPage() {
       )}
 
       {/* This became the MovieDetailInfo component above */}
-      {!loading && <div className="card">
+      {/* {!loading && <div className="card">
           <img src={movie.image} className="card-img-top" alt={movie.title} />
           <div className="card-body">
               <h1 className="card-title">{movie.title}</h1>
               <p className="card-text"> {movie.plot}</p>
           </div>
-      </div>}
+      </div>} */}
 
       <button onClick={() => handleLikeMovie()}>Like</button>
       <div>
