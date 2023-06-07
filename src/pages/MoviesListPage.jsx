@@ -1,6 +1,5 @@
 import { getMoviesByType } from "../services/imdb.service";
 import { Navigate, useParams, Link } from "react-router-dom";
-import FilterForm from '../components/FilterForm';
 import React, { useContext, useEffect, useState } from "react";
 import { filterContext } from "../contexts/filter.context";
 

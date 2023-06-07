@@ -62,7 +62,7 @@ const Navbar = () => {
             Search
           </button>
         </form> */}
-        <FilterForm filterFunction={filteredSearch} />
+        <FilterForm />
         {!loading && isLoggedIn && (
           <>
             <li className="nav-item">

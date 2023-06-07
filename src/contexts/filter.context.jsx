@@ -15,12 +15,17 @@ function FilterProviderWrapper({children}){
         //   filterFunction(newText); //function received from the parent component. 
         };
 
+    const handleInputBlur = () => {
+        setText('');
+        };    
+
 
 
     let exposedValues = {
         loading,
         text,
-        handleInputChange
+        handleInputChange,
+        handleInputBlur
     }
     return(<filterContext.Provider value={exposedValues}>
         {children}
