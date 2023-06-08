@@ -40,6 +40,12 @@ const likeMovie = (movieId) => {
 
     return axios.post(`${baseUrl}/likeMovie`, {movieId}, {headers: {authorization: `Bearer ${token}`}});
   };
+
+  
+
+  
+
+  
   
 
 
