@@ -15,6 +15,9 @@ function UserProfilePage() {
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
   const [movieLike, setMovieLike] = useState([]);
+  const goBack = () => {
+    window.history.back();
+  };
   
 
 
@@ -103,6 +106,7 @@ function UserProfilePage() {
                   <img src={movie.image} alt={movie.title} />
                 </Link>
               </div>
+              
            
              
             </div>
@@ -118,6 +122,9 @@ function UserProfilePage() {
         >
           Delete profile
         </button>
+      </div>
+      <div>
+        <button onClick={goBack}>Back</button>
       </div>
     </div>
   );

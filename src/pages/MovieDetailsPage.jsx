@@ -8,6 +8,7 @@ import { authContext } from "../contexts/auth.context";
 import axios from "axios";
 
 
+
 let baseUrl = "http://localhost:5005/movie";
 
 function MovieDetailsPage() {
@@ -22,6 +23,10 @@ function MovieDetailsPage() {
   const [fetchingRating, setFetchingRating]= useState(true);
   const [submitMessage, setSubmitMessage] = useState("");
   const [message, setMessage] = useState("");
+  const goBack = () => {
+    window.history.back();
+  };
+
   
   
 
@@ -147,9 +152,12 @@ function MovieDetailsPage() {
         <p>{message}</p>
       </div>
 
+      
+      
       <div>
-        <Link to="/movieListPage">Go back</Link>
+        <button onClick={goBack}>Back</button>
       </div>
+    
 
       {!loading && isPremium && ( // Premium Content Here!!!
           <>
