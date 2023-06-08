@@ -50,12 +50,4 @@ const getMoviesByType = (type) => {
 };
 
 
-// const getMoviesByGenre = (genre) => {
-//     console.log( "que es lo que trae genre----???", genre)
-//     if (genre !== '') {
-//         return axios.get('https://www.imdb.com/search/title/?genres=' + genre);
-//     } else {
-//         return Promise.reject(new Error("Invalid movie genre"));
-//       }
-// };
 export {getMoviesByType, getMovieDetails, getLikedMovies};    
