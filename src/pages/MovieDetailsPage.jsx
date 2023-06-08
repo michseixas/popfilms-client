@@ -36,7 +36,6 @@ function MovieDetailsPage() {
       .get(baseUrl + "/" + movieId + "/getComments")
       .then((response) => {
         const data = response.data;
-        // console.log(data);
         setComments(data.comments);
         setCount((count) => count + 1);
       })
@@ -49,36 +48,11 @@ function MovieDetailsPage() {
       .get(baseUrl + "/" + movieId + "/rating") //get request from API by Id of the movie
       .then((response) => {
         const data = response.data; //data from the server(rating info)
-        console.log('data raint=gn ifo000', data.rating.ratings)
-        // setRating(data.rating); //update rating in the state
         setFetchingRating(false); //update rating in the state to false so rating is fetched
 
- // Calculate average rating
- const ratings = data.rating.ratings.map((rating) => rating); // Extract the rating values
- const sum = ratings.reduce((total, rating) => total + rating, 0); // Sum all the ratings
-
- 
- const average = sum / ratings.length; // Calculate the average
-
- setMovieRating(average); // Set the average rating in the state
-
-
-
-
-
-        // const sum = data.rating.ratings.reduce((accumulator, currentValue) => {
-        //   return accumulator + currentValue;
-        // }, 0);
-        // setMovieRating(sum); // Update movieRating with the average rating from the response
-      })
-      .catch((error) => {
-        console.log(error);
-        setFetchingRating(false);
-
         // Calculate average rating
-        const ratings = data.rating.map((rating) => rating.rating); // Extract the rating values
+        const ratings = data.rating.ratings.map((rating) => rating); // Extract the rating values
         const sum = ratings.reduce((total, rating) => total + rating, 0); // Sum all the ratings
-
 
         const average = sum / ratings.length; // Calculate the average
 
@@ -113,14 +87,12 @@ function MovieDetailsPage() {
       });
   };
   const handleRatingChange = (event) => {
-    //extract the updated rating value and and update it
-    // console.log('event target--------', typeof event.target.value)
     setRating(parseInt(event.target.value)); //change the value of rating
   };
 
-    useEffect(() => {
-  console.log('rating', rating)
-    }, [movieRating]  )
+  useEffect(() => {
+    console.log("rating", rating);
+  }, [movieRating]);
 
   const handleRatingsSubmit = () => {
     if (rating === 0 || rating === null) {
@@ -136,16 +108,12 @@ function MovieDetailsPage() {
         console.log("response from addrating", response.data); //see data from backend
         const allRatingsResp = response.data.rating.ratings; // extract the allRatingsResp from the response
 
-
         const ratings = allRatingsResp.map((rating) => rating); // Extract the rating values
         const sum = ratings.reduce((total, rating) => total + rating, 0); // Sum all the ratings
-       
-        
+
         const average = sum / ratings.length; // Calculate the average
-       
+
         setMovieRating(average); // Set the average rating in the state
-
-
 
         setMovieRating(allRatings); // update the movieRating state with the averageRating
         setSubmitMessage("Rating submitted successfully"); // update the submitMessage
@@ -203,7 +171,7 @@ function MovieDetailsPage() {
                 <button onClick={handleRatingsSubmit}>Submit Rating</button>
               </div>
             </div>
-            {movieRating && <p>Average Rating: {movieRating}</p>}
+            {movieRating && <p>Average Rating: {movieRating.toFixed(2)}</p>}
           </>
         )}
     </div>

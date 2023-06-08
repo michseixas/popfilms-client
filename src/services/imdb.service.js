@@ -33,6 +33,29 @@ const getMoviesByType = (type) => {
     else if (type === 'comingsoon') {
         return axios.get(baseUrl + '/ComingSoon/k_xmndj5an') 
     }
+    else if (type === 'drama') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=drama') 
+    } 
+    else if (type === 'comedy') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=comedy') 
+    }
+    else if (type === 'action') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=action') 
+    }
+    else if (type === 'romance') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=romance') 
+    } else {
+        return Promise.reject(new Error("Invalid movie type"));
+      }
 };
 
+
+// const getMoviesByGenre = (genre) => {
+//     console.log( "que es lo que trae genre----???", genre)
+//     if (genre !== '') {
+//         return axios.get('https://www.imdb.com/search/title/?genres=' + genre);
+//     } else {
+//         return Promise.reject(new Error("Invalid movie genre"));
+//       }
+// };
 export {getMoviesByType, getMovieDetails, getLikedMovies};    

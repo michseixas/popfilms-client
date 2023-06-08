@@ -32,7 +32,7 @@ function MovieDetailInfo({ movie, movieRating }) {
           <div>
             <p>{movie.genres}</p>
           </div>
-          {movieRating !== null && <p>Average Rating: {movieRating}</p>}
+          {movieRating !== null && <p>Average Rating: {movieRating.toFixed(2)}</p>}
         </Col>
       </Row>
     </Container>

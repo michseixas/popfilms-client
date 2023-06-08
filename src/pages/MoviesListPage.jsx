@@ -20,12 +20,23 @@ function MoviesListPage() {
   useEffect(() => {
     getMoviesByType(listId) // from imdb.service
       .then((resp) => {
-        setMovies(resp.data.items);
-        console.log(resp.data.items);
-        //setFilteredMovies brings all the movies to the array filteredMovies that is later used to filter the movies
-        //this helps to show all the movies when there are no filters applied.
-        setFilteredMovies(resp.data.items);  
-        setLoading(false);
+        console.log("response from service", resp)
+        if(resp.data.items) {
+          setMovies(resp.data.items);
+          console.log(resp.data.items);
+          //setFilteredMovies brings all the movies to the array filteredMovies that is later used to filter the movies
+          //this helps to show all the movies when there are no filters applied.
+          setFilteredMovies(resp.data.items);  
+          setLoading(false);
+        } else if(resp.data.results) {
+          setMovies(resp.data.results);
+          console.log(resp.data.results);
+          //setFilteredMovies brings all the movies to the array filteredMovies that is later used to filter the movies
+          //this helps to show all the movies when there are no filters applied.
+          setFilteredMovies(resp.data.results);  
+          setLoading(false);
+        }
+       
       })
       .catch((err) => console.log(err));
   }, [])
@@ -51,6 +62,10 @@ function MoviesListPage() {
   else if (listId === "mostpopular") title = "Most Popular Movies";
   else if (listId === "theater") title = "New Movies in Theaters Now";
   else if (listId === "comingsoon") title = "Coming soon";
+  else if (listId === "drama") title = "Drama";
+  else if (listId === "comedy") title = "Comedy";
+  else if (listId === "action") title = "Action";
+  else if (listId === "romance") title = "Romance";
 
   return (
     <div>
@@ -73,6 +88,7 @@ function MoviesListPage() {
                 <div className="card-body">
                   <h5 className="card-title">{movie.title}</h5>
                   <p className="card-text">{movie.description}</p>
+                  <p className="card-text">{movie.genres}</p>
                   <div className="imageDisplayed responsive-image">
                   <Link to={`/movies/${movie.id}`}>
                     <img src={movie.image} loading="lazy" alt={movie.title} />
