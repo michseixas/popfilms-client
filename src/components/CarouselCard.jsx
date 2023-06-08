@@ -7,7 +7,7 @@ function CarouselCard() {
       <div className="carousel-wrapper">
         <Carousel>
           <Carousel.Item>
-            <Link to="/top250">
+            <Link to="/">
               <img
                 className="d-block w-100 carousel-image"
                 src="/images/shawshank-redemption.webp"
