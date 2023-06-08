@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 
-function MovieDetailInfo({ movie }) {
-    console.log("que trae movie objeto", movie)
+function MovieDetailInfo({ movie, movieRating }) {
+  console.log("que trae movie objeto", movie);
   return (
     <Container>
       <Row>
@@ -32,6 +32,7 @@ function MovieDetailInfo({ movie }) {
           <div>
             <p>{movie.genres}</p>
           </div>
+          {movieRating !== null && <p>Average Rating: {movieRating}</p>}
         </Col>
       </Row>
     </Container>

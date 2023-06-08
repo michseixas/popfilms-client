@@ -8,7 +8,7 @@ import UserProfilePage from "./pages/UserProfilePage";
 import MoviesListPage from "./pages/MoviesListPage";
 import MovieDetailsPage from "./pages/MovieDetailsPage";
 import AddComment from "./pages/MovieDetailsPage";
-import Rate from "./pages/MovieDetailsPage";
+import Rate from "./pages/MovieDetailsPage"
 import ErrorPage from "./pages/ErrorPage";
 import Footer from "./components/Footer";
 import "./App.css";
