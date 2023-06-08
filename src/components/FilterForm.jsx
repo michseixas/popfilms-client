@@ -3,9 +3,10 @@ import { filterContext } from "../contexts/filter.context";
 import { useLocation } from 'react-router-dom';
 
 function FilterForm() {
-  const { handleInputChange, handleInputBlur, text } = useContext(filterContext);
+  const { handleInputChange, handleInputBlur, clearInput, text } = useContext(filterContext);
   useEffect(() => {
-  }, [text]);
+    clearInput
+  }, []);
 
   const location = useLocation();
   const route = location.pathname;

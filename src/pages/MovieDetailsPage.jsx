@@ -1,11 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { likeMovie } from "../services/user.service";
+import React, { useState, useEffect , useContext } from "react";
+import { likeMovie, dislikeMovie } from "../services/user.service";
 import { useParams, Link } from "react-router-dom";
 import { getMovieDetails } from "../services/imdb.service";
 import CreateComment from "../components/CreateComment";
 import MovieDetailInfo from "../components/MovieDetailInfo";
 import { authContext } from "../contexts/auth.context";
 import axios from "axios";
+
+
 
 let baseUrl = "http://localhost:5005/movie";
 
@@ -21,6 +23,13 @@ function MovieDetailsPage() {
   const [fetchingRating, setFetchingRating] = useState(true);
   const [submitMessage, setSubmitMessage] = useState("");
   const [movieRating, setMovieRating] = useState(null);
+  const [message, setMessage] = useState("");
+  const goBack = () => {
+    window.history.back();
+  };
+
+  
+  
 
   useEffect(() => {
     console.log("viendo movieId", movieId);
@@ -70,9 +79,26 @@ function MovieDetailsPage() {
       .then((response) => {
         console.log(response);
         console.log("Movie liked successfully.");
+        setMessage("I like this movie");
+        setTimeout(() => setMessage(""), 4000); 
       })
       .catch((error) => {
         console.log("Error liking the movie:", error);
+      });
+  };
+
+  
+  const handleDislikeMovie = () => {
+    
+    dislikeMovie(movieId)
+      .then((response) => {
+        console.log(response);
+        console.log("Movie disliked successfully.");
+        setMessage("I don't like this movie");
+        setTimeout(() => setMessage(""), 4000); 
+      })
+      .catch((error) => {
+        console.log("Error disliking the movie:", error);
       });
   };
 
@@ -133,13 +159,31 @@ function MovieDetailsPage() {
         </div>
       )}
 
-      <button onClick={() => handleLikeMovie()}>Like</button>
+      {/* This became the MovieDetailInfo component above */}
+      {/* {!loading && <div className="card">
+          <img src={movie.image} className="card-img-top" alt={movie.title} />
+          <div className="card-body">
+              <h1 className="card-title">{movie.title}</h1>
+              <p className="card-text"> {movie.plot}</p>
+          </div>
+      </div>} */}
+
+      <button className="btn btn-success" onClick={() => handleLikeMovie()}>Like</button>
+      <button className="btn btn-danger" onClick={() => handleDislikeMovie()}>Dislike</button>
+      
+
       <div>
-        <Link to="/movieListPage">Go back</Link>
+        <p>{message}</p>
       </div>
 
-      {!loading &&
-        isPremium && ( // Premium Content Here!!!
+      
+      
+      <div>
+        <button onClick={goBack}>Back</button>
+      </div>
+    
+
+      {!loading && isPremium && ( // Premium Content Here!!!
           <>
             <div>
               <CreateComment

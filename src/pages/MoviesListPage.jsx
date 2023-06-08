@@ -56,6 +56,9 @@ function MoviesListPage() {
   };
 
 
+  useEffect(() => {
+   console.log("Movies filtered", filteredMovies)
+  }, [filteredMovies]);
 
   let title = "";
   if (listId === "top250") title = "Top 250 Movies of all times";
@@ -68,7 +71,7 @@ function MoviesListPage() {
   else if (listId === "romance") title = "Romance";
 
   return (
-    <div>
+    <div className="bg-black text-white">
       <h1>{title}</h1>
 
       {loading ? (
@@ -86,7 +89,7 @@ function MoviesListPage() {
             <div className="col-3 p-1" key={movie.id}>
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">{movie.title}</h5>
+                  {/* <h5 className="card-title">{movie.title}</h5> */}
                   <p className="card-text">{movie.description}</p>
                   <p className="card-text">{movie.genres}</p>
                   <div className="imageDisplayed responsive-image">

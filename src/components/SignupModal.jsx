@@ -6,6 +6,9 @@ import axios from "axios";
 import { Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../contexts/auth.context";
 import { signup } from "../services/auth.service";
+// require('dotenv').config();
+
+
 
 
 let baseUrl = "http://localhost:5005/auth";
@@ -23,11 +26,11 @@ function SignupModal() {
   const navigate = useNavigate();
   const { isLoggedIn, loading, signupIsOk } = useContext(authContext);
   const [loadingAvatar, setLoadingAvatar] = useState(false);
-
+  const [isPremium, setIsPremium] = useState(false);
+  const [premiumCode, setPremiumCode] = useState("");
 
   const handleFileUpload = (e) => {
-    // console.log("The file to be uploaded is: ", e.target.files[0]);
-    setLoadingAvatar(true)
+    setLoadingAvatar(true);
 
 
     const uploadData = new FormData();
@@ -40,7 +43,7 @@ function SignupModal() {
         console.log("response is: ", response);
         // response carries "fileUrl" which we can use to update the state
         setImageUrl(response.data.fileUrl);
-        setLoadingAvatar(false)
+        setLoadingAvatar(false);
       })
       .catch(err => console.log("Error while uploading the file: ", err));
   };
@@ -50,17 +53,18 @@ function SignupModal() {
 
 
     if (username == "" || email== "" || password == "" || passwordRepeat == "") {
-      console.log("error: fields missing");
+
       setError("Some fields are missing");
       return;
     }
     if (password != passwordRepeat) {
-      console.log("passwords should match");
       setError("Passwords should match");
       return;
     }
 
-    const user = { username, email, password, imageUrl };
+    
+    const user = { username, email, password, imageUrl, premiumCode};
+
 
     if (!loadingAvatar) {
       signup(user)
@@ -95,81 +99,102 @@ function SignupModal() {
         keyboard={false}
       >
         <Modal.Header closeButton>
-             <Modal.Title>Signup</Modal.Title>
+          <Modal.Title>Signup</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <div>
-        <form onSubmit={submitHandler} className="w-75 mx-auto">
-            {error != "" && <Alert message={error} />}
-            <div className="mb-3">
-            <label htmlFor="username" className="form-label">
-                Username
-            </label>
-            <input
-                type="text"
-                className="form-control"
-                id="username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            </div>
-            <div className="mb-3">
-            <label htmlFor="email" className="form-label">
-                Email
-            </label>
-            <input
-                type="text"
-                className="form-control"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            </div>
-            <div className="mb-3">
-            <label htmlFor="password" className="form-label">
-                Password
-            </label>
-            <input
-                type="password"
-                className="form-control"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            </div>
-            <div className="mb-3">
-            <label htmlFor="passwordrepeat" className="form-label">
-                Repeat password
-            </label>
-            <input
-                type="password"
-                className="form-control"
-                id="passwordrepeat"
-                value={passwordRepeat}
-                onChange={(e) => setPasswordRepeat(e.target.value)}
-            />
-            </div>
-{/* //cloudinary start*/}
-            <div className="mb-3">
-            <label htmlFor="imageUrl" className="form-label">
-                Upload image
-            </label>
-            <input
-                type="file"
-                className="form-control"
-                id="imageUrl"
-                // value={imageUrl}
-                onChange={(e) => handleFileUpload(e)}
-            />
-            {loadingAvatar && <p>Image is loading.....</p>}
-            </div>
-{/* //cloudinary end */}
+          <div>
+            <form onSubmit={submitHandler} className="w-75 mx-auto">
+              {error != "" && <Alert message={error} />}
+              <div className="mb-3">
+                <label htmlFor="username" className="form-label">
+                  Username
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="passwordrepeat" className="form-label">
+                  Repeat password
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  id="passwordrepeat"
+                  value={passwordRepeat}
+                  onChange={(e) => setPasswordRepeat(e.target.value)}
+                />
+              </div>
 
-            <button type="submit" className="btn btn-primary" onClick={handleClose} disabled={loadingAvatar}>
-            Signup
-            </button>
-        </form>
-        </div>
+              {/* //checks for premium code*/}
+              <div className="mb-3">
+                <label htmlFor="premiumCode" className="form-label">
+                  Premium Code
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  id="premiumCode"
+                  value={premiumCode}
+                  onChange={(e) => setPremiumCode(e.target.value)}
+                />
+              </div>
+              {/* //checks if Premium end*/}
+
+              {/* //cloudinary start*/}
+              <div className="mb-3">
+                <label htmlFor="imageUrl" className="form-label">
+                  Upload image
+                </label>
+                <input
+                  type="file"
+                  className="form-control"
+                  id="imageUrl"
+                  // value={imageUrl}
+                  onChange={(e) => handleFileUpload(e)}
+                />
+                {loadingAvatar && <p>Image is loading.....</p>}
+              </div>
+              {/* //cloudinary end */}
+
+              <button
+                type="submit"
+                className="btn btn-primary"
+                onClick={handleClose}
+                disabled={loadingAvatar}
+              >
+                Signup
+              </button>
+            </form>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

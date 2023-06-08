@@ -32,14 +32,13 @@ const Navbar = () => {
     }
   };
 
-
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"
       data-bs-theme="dark"
     >
       <div className="container-fluid">
-        <Link to="/" className="navbar-brand">Popfilms</Link>
+        <Link to="/" className="navbar-brand"><img className="poplogoNav" src="/images/popfilmslogoNav.png"/> </Link>
         <Button variant="primary" onClick={handleShow} className="me-2">
           Menu
         </Button>
