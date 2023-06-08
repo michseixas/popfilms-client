@@ -1,5 +1,5 @@
 import React, { useState, useEffect , useContext } from "react";
-import { likeMovie } from "../services/user.service";
+import { likeMovie, dislikeMovie } from "../services/user.service";
 import { useParams, Link } from "react-router-dom";
 import { getMovieDetails } from "../services/imdb.service";
 import CreateComment from "../components/CreateComment";
@@ -20,6 +20,7 @@ function MovieDetailsPage() {
   const [rating, setRating]= useState(null);
   const [fetchingRating, setFetchingRating]= useState(true);
   const [submitMessage, setSubmitMessage] = useState("");
+  
 
   useEffect(() => {
     console.log("viendo movieId", movieId);
@@ -66,6 +67,19 @@ function MovieDetailsPage() {
       })
       .catch((error) => {
         console.log("Error liking the movie:", error);
+      });
+  };
+
+  
+  const handleDislikeMovie = () => {
+    
+    dislikeMovie(movieId)
+      .then((response) => {
+        console.log(response);
+        console.log("Movie disliked successfully.");
+      })
+      .catch((error) => {
+        console.log("Error disliking the movie:", error);
       });
   };
 
@@ -119,6 +133,7 @@ function MovieDetailsPage() {
       </div>} */}
 
       <button onClick={() => handleLikeMovie()}>Like</button>
+      <button onClick={() => handleDislikeMovie()}>Dislike</button>
       <div>
         <Link to="/movieListPage">Go back</Link>
       </div>

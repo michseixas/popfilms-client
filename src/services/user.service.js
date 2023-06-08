@@ -1,4 +1,6 @@
 import axios from 'axios';
+
+
 let baseUrl = 'http://localhost:5005/user';
 // let baseUrl2 = 'https://imdb-api.com/en/API';
 
@@ -25,15 +27,7 @@ const updateImage= (userId, newImage) => {
     return axios.post(baseUrl + '/:userId/updateImage', {image: newImage})
 }
 
-//populate movie by Id
-// const movieId= (movieId) => {
-//     axios.get(baseUrl2 + '/' + movieId)
-// };
 
-// const likeMovie = () => {
-//     return axios.post(baseUrl + '/:userId/likeMovie')
-    
-// }
 
 const likeMovie = (movieId) => {
     let token = localStorage.getItem('authToken');
@@ -41,6 +35,13 @@ const likeMovie = (movieId) => {
     return axios.post(`${baseUrl}/likeMovie`, {movieId}, {headers: {authorization: `Bearer ${token}`}});
   };
 
+  const dislikeMovie = (movieId) => {
+    let token = localStorage.getItem('authToken');
+
+    return axios.post(`${baseUrl}/dislikeMovie`, {movieId}, {headers: {authorization: `Bearer ${token}`}});
+  };
+
+
   
 
   
@@ -50,4 +51,4 @@ const likeMovie = (movieId) => {
 
 
 
-export {getUserInfo, updateUserInfo, deleteUser, updateImage, likeMovie};
+export {getUserInfo, updateUserInfo, deleteUser, updateImage, likeMovie, dislikeMovie};

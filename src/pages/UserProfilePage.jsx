@@ -7,6 +7,7 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getLikedMovies } from "../services/imdb.service";
 
 
+
 function UserProfilePage() {
   const [userInfo, setUserInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,6 +41,9 @@ function UserProfilePage() {
       })
       .catch((error) => console.error(error));
   }, []);
+
+
+  
 
 
  
@@ -98,6 +102,7 @@ function UserProfilePage() {
                   <img src={movie.image} alt={movie.title} />
                 </Link>
               </div>
+           
              
             </div>
           </div>
