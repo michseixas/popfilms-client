@@ -18,7 +18,6 @@ function SignupPage() {
   const [error, setError] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [loadingImage, setLoadingImage] = useState(false);
-  // const [isPremiumUser. setIsPremiumUser]=useState(false);
 
   const navigate = useNavigate();
 

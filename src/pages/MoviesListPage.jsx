@@ -45,6 +45,9 @@ function MoviesListPage() {
   };
 
 
+  useEffect(() => {
+   console.log("Movies filtered", filteredMovies)
+  }, [filteredMovies]);
 
   let title = "";
   if (listId === "top250") title = "Top 250 Movies of all times";
