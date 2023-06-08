@@ -2,7 +2,7 @@ import React from 'react'
 
 function ErrorPage() {
   return (
-    <div>ErrorPage</div>
+    <div className="bg-black text-white">ErrorPage</div>
   )
 }
 

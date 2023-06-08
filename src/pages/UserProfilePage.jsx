@@ -6,8 +6,6 @@ import EditUserInfo from "../components/EditUserInfoModal";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getLikedMovies } from "../services/imdb.service";
 
-
-
 function UserProfilePage() {
   const [userInfo, setUserInfo] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,8 +16,6 @@ function UserProfilePage() {
   const goBack = () => {
     window.history.back();
   };
-  
-
 
   const { user } = useContext(authContext); // get the user token so we can access it's ID, to fetch data
   //const userId = user._id;
@@ -46,11 +42,6 @@ function UserProfilePage() {
       .catch((error) => console.error(error));
   }, []);
 
-
-  
-
-
- 
   // useEffect(() => {
   //  console.log("esto es movilike",movieLike)
 
@@ -66,8 +57,6 @@ function UserProfilePage() {
     setAvatarFile(file);
   };
 
-  
-
   //this function send request to the server to delete user profile by Id
   const handleDeleteProfile = () => {
     console.log("Delete profile button clicked");
@@ -81,38 +70,52 @@ function UserProfilePage() {
   if (!deleteUser && deleted) return <Navigate to="/" />;
 
   return (
-    <div className="container mt-5">
-      <div>
-        <img src={userInfo.imageUrl} alt="Avatar" className="img-fluid" />
-        <input
-          type="file"
-          className="btn btn-outline-dark"
-          onChange={handleUpdateAvatar}
-          accept="image/*"
+    <div className="container-fluid bg-black text-white p-5">
+      <div className="container mt-5 text-center">
+        <img
+          src={userInfo.imageUrl}
+          alt="Avatar"
+          className="img-fluid rounded-circle mx-auto d-block mb-3"
+          style={{ width: "300px", height: "300px" }}
         />
+        <label htmlFor="avatar" className="btn btn-primary btn-sm">
+          Change Picture
+        </label>
+        <div className="form-group">
+          <input
+            id="avatar"
+            type="file"
+            className="visually-hidden"
+            onChange={handleUpdateAvatar}
+            accept="image/*"
+          />
+        </div>
       </div>
 
       <EditUserInfo userId={user._id} />
 
-      <h1>Liked Movies</h1>
-      {movieLike.map((movie) => (
-        <div className="col-3 p-1" key={movie.id}>
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">{movie.title}</h5>
-              <p className="card-text">{movie.description}</p>
-              <div className="imageDisplayed responsive-image">
-                <Link to={`/movies/${movie.id}`}>
-                  <img src={movie.image} alt={movie.title} />
-                </Link>
+      <h1 className="text-white">Liked Movies</h1>
+      <div className="row">
+        {movieLike.map((movie) => (
+          <div className="col-md-3 col-sm-6 mb-4" key={movie.id}>
+            <div className="card">
+              <div className="card-body">
+                {/* <h5 className="card-title">{movie.title}</h5> */}
+                <p className="card-text">{movie.description}</p>
+                <div className="imageDisplayed responsive-image">
+                  <Link to={`/movies/${movie.id}`}>
+                    <img
+                      src={movie.image}
+                      alt={movie.title}
+                      className="img-fluid"
+                    />
+                  </Link>
+                </div>
               </div>
-              
-           
-             
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <div>
         <button
@@ -124,7 +127,9 @@ function UserProfilePage() {
         </button>
       </div>
       <div>
-        <button onClick={goBack}>Back</button>
+        <button className="btn btn-primary" onClick={goBack}>
+          Back
+        </button>
       </div>
     </div>
   );

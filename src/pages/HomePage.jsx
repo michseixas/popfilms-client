@@ -2,8 +2,8 @@ import CarouselCard from "../components/CarouselCard";
 
 function HomePage() {
   return (
-    <div>
-    <h1>This is the homepage </h1>
+    <div className="bg-black text-white">
+    
     <CarouselCard />
     <br/>
     </div>

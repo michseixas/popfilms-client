@@ -53,7 +53,7 @@ function MoviesListPage() {
   else if (listId === "comingsoon") title = "Coming soon";
 
   return (
-    <div>
+    <div className="bg-black text-white">
       <h1>{title}</h1>
 
       {loading ? (
@@ -71,7 +71,7 @@ function MoviesListPage() {
             <div className="col-3 p-1" key={movie.id}>
               <div className="card">
                 <div className="card-body">
-                  <h5 className="card-title">{movie.title}</h5>
+                  {/* <h5 className="card-title">{movie.title}</h5> */}
                   <p className="card-text">{movie.description}</p>
                   <div className="imageDisplayed responsive-image">
                   <Link to={`/movies/${movie.id}`}>
