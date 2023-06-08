@@ -15,6 +15,7 @@ function UserProfilePage() {
   const [count, setCount] = useState(0);
   const [show, setShow] = useState(false);
   const [movieLike, setMovieLike] = useState([]);
+  
 
 
   const { user } = useContext(authContext); // get the user token so we can access it's ID, to fetch data

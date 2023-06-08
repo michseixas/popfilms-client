@@ -7,6 +7,7 @@ import MovieDetailInfo from "../components/MovieDetailInfo";
 import { authContext } from "../contexts/auth.context";
 import axios from "axios";
 
+
 let baseUrl = "http://localhost:5005/movie";
 
 function MovieDetailsPage() {
@@ -20,6 +21,8 @@ function MovieDetailsPage() {
   const [rating, setRating]= useState(null);
   const [fetchingRating, setFetchingRating]= useState(true);
   const [submitMessage, setSubmitMessage] = useState("");
+  const [message, setMessage] = useState("");
+  
   
 
   useEffect(() => {
@@ -64,6 +67,8 @@ function MovieDetailsPage() {
       .then((response) => {
         console.log(response);
         console.log("Movie liked successfully.");
+        setMessage("I like this movie");
+        setTimeout(() => setMessage(""), 4000); 
       })
       .catch((error) => {
         console.log("Error liking the movie:", error);
@@ -77,6 +82,8 @@ function MovieDetailsPage() {
       .then((response) => {
         console.log(response);
         console.log("Movie disliked successfully.");
+        setMessage("I don't like this movie");
+        setTimeout(() => setMessage(""), 4000); 
       })
       .catch((error) => {
         console.log("Error disliking the movie:", error);
@@ -132,8 +139,14 @@ function MovieDetailsPage() {
           </div>
       </div>} */}
 
-      <button onClick={() => handleLikeMovie()}>Like</button>
-      <button onClick={() => handleDislikeMovie()}>Dislike</button>
+      <button className="btn btn-success" onClick={() => handleLikeMovie()}>Like</button>
+      <button className="btn btn-danger" onClick={() => handleDislikeMovie()}>Dislike</button>
+      
+
+      <div>
+        <p>{message}</p>
+      </div>
+
       <div>
         <Link to="/movieListPage">Go back</Link>
       </div>
