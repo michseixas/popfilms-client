@@ -5,6 +5,7 @@ import { deleteUser } from "../services/user.service";
 import EditUserInfo from "../components/EditUserInfoModal";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getLikedMovies } from "../services/imdb.service";
+import Button from "react-bootstrap/Button";
 
 function UserProfilePage() {
   const [userInfo, setUserInfo] = useState({});
@@ -70,6 +71,10 @@ function UserProfilePage() {
   if (!deleteUser && deleted) return <Navigate to="/" />;
 
   return (
+    
+
+
+
     <div className="container-fluid bg-black text-white p-5">
       <div className="container mt-5 text-center">
         <img
@@ -91,8 +96,15 @@ function UserProfilePage() {
           />
         </div>
       </div>
-
+      <div>
       <EditUserInfo userId={user._id} />
+
+     
+        <Button className="btn btn-danger" onClick={handleDeleteProfile}>
+          Delete profile
+        </Button>
+      </div>
+
 
       <h1 className="text-white">Liked Movies</h1>
       <div className="row">
@@ -116,21 +128,13 @@ function UserProfilePage() {
           </div>
         ))}
       </div>
-
+      
       <div>
-        <button
-          type="submit"
-          className="btn btn-danger"
-          onClick={handleDeleteProfile}
-        >
-          Delete profile
-        </button>
-      </div>
-      <div>
-        <button className="btn btn-primary" onClick={goBack}>
+        <Button className="btn btn-primary" variant="dark"  onClick={goBack}>
           Back
-        </button>
+        </Button>
       </div>
+
     </div>
   );
 }

@@ -58,3 +58,8 @@
   h1 {
     text-align: center;
   }
+
+  .likeDislike {
+    display: flex;
+    justify-content: center;
+  }
