@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-let baseUrl = 'http://localhost:5005/user';
+let baseUrl = import.meta.env.VITE_API_URL + "/user";
 // let baseUrl2 = 'https://imdb-api.com/en/API';
 
 

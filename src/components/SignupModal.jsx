@@ -10,8 +10,8 @@ import { signup } from "../services/auth.service";
 
 
 
+let baseUrl = import.meta.env.VITE_API_URL + "/auth";
 
-let baseUrl = "http://localhost:5005/auth";
 
 function SignupModal() {
   const [show, setShow] = useState(false);

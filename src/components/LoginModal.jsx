@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../contexts/auth.context";
 import { signup } from "../services/auth.service";
 
-let baseUrl = "http://localhost:5005/auth";
+let baseUrl = import.meta.env.VITE_API_URL + "/auth";
 
 function LoginModal() {
   const [show, setShow] = useState(false);

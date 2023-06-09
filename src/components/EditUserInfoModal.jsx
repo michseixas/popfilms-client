@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { getUserInfo } from "../services/user.service";
 import { authContext } from "../contexts/auth.context";
 
-let baseUrl = "http://localhost:5005/user";
+let baseUrl = import.meta.env.VITE_API_URL + "/user";
 
 function EditUserInfo({ userId }) {
   console.log(userId);
@@ -78,43 +78,43 @@ function EditUserInfo({ userId }) {
       <div>
         <div className="mb-3">
           <label htmlFor="usernameInput" className="form-label">
-          <b>User Name:</b> {userInfo.username}
+            User Name: {userInfo.username}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="firstNameInput" className="form-label">
-          <b>First Name:</b> {userInfo.firstName}
+            First Name: {userInfo.firstName}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="lastNameInput" className="form-label">
-          <b>Last Name:</b> {userInfo.lastName}
+            Last Name: {userInfo.lastName}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="isPremiumInput" className="form-label">
-          <b>Premium user:</b> {userInfo.isPremium ? "yes" : "no"}
+            Premium user: {userInfo.isPremium ? "yes" : "no"}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-          <b>Email:</b> {userInfo.email}
+            Email: {userInfo.email}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="countryInput" className="form-label">
-            <b>Country:</b> {userInfo.country}
+            Country: {userInfo.country}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="cityInput" className="form-label">
-          <b>City:</b> {userInfo.city}
+            City: {userInfo.city}
           </label>
         </div>
       </div>
@@ -158,6 +158,16 @@ function EditUserInfo({ userId }) {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicPremium">
+              <Form.Label>Premium</Form.Label>
+            <Form.Check // prettier-ignore
+                type="checkbox"
+                id="isPremium"
+                checked={isPremium} 
+                label="Check for Premium Access"
+                onChange={(e) => setIsPremium(e.target.checked)}
+              />
+              </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCity">
               <Form.Label>City</Form.Label>
               <Form.Control

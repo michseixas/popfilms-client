@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Stack from 'react-bootstrap/Stack';
 
 
-let baseUrl = "http://localhost:5005/movie";
+let baseUrl = import.meta.env.VITE_API_URL + "/movie";
 
 const CreateComment = ({ movieId, addCommentHandler }) => {
   const [comment, setComment] = useState("");

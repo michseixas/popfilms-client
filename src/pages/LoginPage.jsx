@@ -4,7 +4,7 @@ import Alert from "../components/Alert";
 import { authContext } from "../contexts/auth.context";
 import { Navigate, useNavigate } from "react-router-dom";
 
-let baseUrl = "http://localhost:5005/auth";
+let baseUrl = import.meta.env.VITE_API_URL + "/auth";
 
 function LoginPage(props) {
   const [username, setUsername] = useState("");

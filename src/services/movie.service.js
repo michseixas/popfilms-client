@@ -1,5 +1,5 @@
 import axios from 'axios';
-let baseUrl = 'http://localhost:5005/movie';
+let baseUrl = import.meta.env.VITE_API_URL + "/movie";
 
 const getMovieDetails= (movieId) => {
     return axios.get(baseUrl + '/'+ movieId)

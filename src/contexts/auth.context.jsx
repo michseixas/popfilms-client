@@ -3,7 +3,8 @@ import { createContext, useEffect, useState } from "react";
 
 const authContext = createContext();
 
-let baseUrl = 'http://localhost:5005/auth';
+
+let baseUrl = import.meta.env.VITE_API_URL + "/auth";
 
 function AuthProviderWrapper({children}){
     const [signupOk, setSignupOk] = useState(false); //This always will be false, only during signup it will set up to true.

@@ -9,7 +9,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import CommentCard from "../components/CommentCard";
 import axios from "axios";
 
-let baseUrl = "http://localhost:5005/movie";
+let baseUrl = import.meta.env.VITE_API_URL + "/movie";
 
 function MovieDetailsPage() {
   //state variables section: store and update the data of the component
