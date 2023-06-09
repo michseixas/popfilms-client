@@ -150,7 +150,7 @@ function MovieDetailsPage() {
   };
 
   return (
-    <div>
+    <div className="bg-black text-white">
       <br />
       <MovieDetailInfo movie={movie} movieRating={movieRating} />
       {loading && (
