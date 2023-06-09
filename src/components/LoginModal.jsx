@@ -47,7 +47,7 @@ function LoginModal() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="dark" onClick={handleShow}>
         Login
       </Button>
 
@@ -93,14 +93,14 @@ function LoginModal() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <button type="submit" className="btn btn-primary" onClick={handleClose}>
+              <Button type="submit" variant="dark" className="btn btn-primary" onClick={handleClose}>
                 Login
-              </button>
+              </Button>
             </form>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="dark" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

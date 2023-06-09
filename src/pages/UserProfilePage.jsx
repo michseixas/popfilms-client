@@ -76,7 +76,7 @@ function UserProfilePage() {
           src={userInfo.imageUrl}
           alt="Avatar"
           className="img-fluid rounded-circle mx-auto d-block mb-3"
-          style={{ width: "300px", height: "300px" }}
+          style={{ width: "300px" }}
         />
         <label htmlFor="avatar" className="btn btn-primary btn-sm">
           Change Picture
