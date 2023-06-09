@@ -41,7 +41,7 @@ $ npm start
 - Footer
 - SignupForm 
 - LoginForm 
-- Carrousel (Homepage)
+- Carousel (Homepage)
 - MovieCardTheater (Homepage)  
 - MovieCardTop (Homepage)  
 - CelebrityCard (MoviesListPage)  

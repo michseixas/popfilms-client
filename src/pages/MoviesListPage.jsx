@@ -69,11 +69,14 @@ function MoviesListPage() {
   else if (listId === "comedy") title = "Comedy";
   else if (listId === "action") title = "Action";
   else if (listId === "romance") title = "Romance";
+  else if (listId === "animation") title = "Animation";
+  else if (listId === "biography") title = "Biography";
+  else if (listId === "adventure") title = "Adventure";
+  else if (listId === "family") title = "Family";
 
   return (
     <div className="bg-black text-white">
       <h1>{title}</h1>
-
       {loading ? (
         <div className="w-100 text-center mt-5 mb-5">
           <div className="spinner-border text-warning" role="status">

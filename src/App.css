@@ -1,5 +1,5 @@
 .carousel-wrapper {
-    width: 70%;
+    width: 80%;
   }
 
   .responsive-image {
@@ -16,11 +16,50 @@
   }
 
   .carousel-image {
-    height: 700px; 
+    height: 450px; 
     object-fit: cover;
   }
 
   .poplogoNav {
-    width: 150px;
+    width: 110px;
+  }
+
+ .page-wrapper {
+    background-color: black;
+  }
+
+  .full-width-row {
+    width: 100%;
+    align-items: center;
+  }
+
+  .left-column {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .right-column {
+    display: flex;
+    justify-content: flex-end;
   }
   
+  .middle-column {
+    display: flex;
+    justify-content: space-between;
+  }
+ 
+
+  .menu-top-link {
+    color: white;
+    text-decoration: none;
+
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .likeDislike {
+    display: flex;
+    justify-content: center;
+  }

@@ -78,43 +78,43 @@ function EditUserInfo({ userId }) {
       <div>
         <div className="mb-3">
           <label htmlFor="usernameInput" className="form-label">
-            User Name: {userInfo.username}
+          <b>User Name:</b> {userInfo.username}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="firstNameInput" className="form-label">
-            First Name: {userInfo.firstName}
+          <b>First Name:</b> {userInfo.firstName}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="lastNameInput" className="form-label">
-            Last Name: {userInfo.lastName}
+          <b>Last Name:</b> {userInfo.lastName}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="isPremiumInput" className="form-label">
-            Premium user: {userInfo.isPremium ? "yes" : "no"}
+          <b>Premium user:</b> {userInfo.isPremium ? "yes" : "no"}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="exampleInputEmail1" className="form-label">
-            Email: {userInfo.email}
+          <b>Email:</b> {userInfo.email}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="countryInput" className="form-label">
-            Country: {userInfo.country}
+            <b>Country:</b> {userInfo.country}
           </label>
         </div>
 
         <div className="mb-3">
           <label htmlFor="cityInput" className="form-label">
-            City: {userInfo.city}
+          <b>City:</b> {userInfo.city}
           </label>
         </div>
       </div>
@@ -158,16 +158,6 @@ function EditUserInfo({ userId }) {
                 onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPremium">
-              <Form.Label>Premium</Form.Label>
-            <Form.Check // prettier-ignore
-                type="checkbox"
-                id="isPremium"
-                checked={isPremium} 
-                label="Check for Premium Access"
-                onChange={(e) => setIsPremium(e.target.checked)}
-              />
-              </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCity">
               <Form.Label>City</Form.Label>
               <Form.Control

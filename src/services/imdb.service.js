@@ -44,6 +44,18 @@ const getMoviesByType = (type) => {
     }
     else if (type === 'romance') {
         return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=romance') 
+    }
+    else if (type === 'animation') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=animation') 
+    }
+    else if (type === 'biography') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=biography') 
+    }
+    else if (type === 'adventure') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=adventure') 
+    }
+    else if (type === 'family') {
+        return axios.get('https://imdb-api.com/API/AdvancedSearch/k_xmndj5an/?title_type=feature&genres=family') 
     } else {
         return Promise.reject(new Error("Invalid movie type"));
       }

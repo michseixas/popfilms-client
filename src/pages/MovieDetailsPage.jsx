@@ -1,13 +1,13 @@
-import React, { useState, useEffect , useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { likeMovie, dislikeMovie } from "../services/user.service";
 import { useParams, Link } from "react-router-dom";
 import { getMovieDetails } from "../services/imdb.service";
 import CreateComment from "../components/CreateComment";
 import MovieDetailInfo from "../components/MovieDetailInfo";
 import { authContext } from "../contexts/auth.context";
+import { Container, Row, Col } from "react-bootstrap";
+import CommentCard from "../components/CommentCard";
 import axios from "axios";
-
-
 
 let baseUrl = "http://localhost:5005/movie";
 
@@ -24,12 +24,9 @@ function MovieDetailsPage() {
   const [submitMessage, setSubmitMessage] = useState("");
   const [movieRating, setMovieRating] = useState(null);
   const [message, setMessage] = useState("");
-  const goBack = () => {
-    window.history.back();
-  };
-
-  
-  
+  // const goBack = () => {
+  //   window.history.back();
+  // };
 
   useEffect(() => {
     console.log("viendo movieId", movieId);
@@ -80,22 +77,20 @@ function MovieDetailsPage() {
         console.log(response);
         console.log("Movie liked successfully.");
         setMessage("I like this movie");
-        setTimeout(() => setMessage(""), 4000); 
+        setTimeout(() => setMessage(""), 4000);
       })
       .catch((error) => {
         console.log("Error liking the movie:", error);
       });
   };
 
-  
   const handleDislikeMovie = () => {
-    
     dislikeMovie(movieId)
       .then((response) => {
         console.log(response);
         console.log("Movie disliked successfully.");
         setMessage("I don't like this movie");
-        setTimeout(() => setMessage(""), 4000); 
+        setTimeout(() => setMessage(""), 4000);
       })
       .catch((error) => {
         console.log("Error disliking the movie:", error);
@@ -150,61 +145,68 @@ function MovieDetailsPage() {
   };
 
   return (
-    <div>
+    <div className="bg-black text-white">
       <br />
-      <MovieDetailInfo movie={movie} movieRating={movieRating} />
-      {loading && (
-        <div className="spinner-grow" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      )}
-
-      {/* This became the MovieDetailInfo component above */}
-      {/* {!loading && <div className="card">
-          <img src={movie.image} className="card-img-top" alt={movie.title} />
-          <div className="card-body">
-              <h1 className="card-title">{movie.title}</h1>
-              <p className="card-text"> {movie.plot}</p>
-          </div>
-      </div>} */}
-
-      <button className="btn btn-success" onClick={() => handleLikeMovie()}>Like</button>
-      <button className="btn btn-danger" onClick={() => handleDislikeMovie()}>Dislike</button>
-      
-
-      <div>
-        <p>{message}</p>
-      </div>
-
-      
-      
-      <div>
-        <button onClick={goBack}>Back</button>
-      </div>
-    
-
-      {!loading && isPremium && ( // Premium Content Here!!!
-          <>
-            <div>
-              <CreateComment
-                movieId={movieId}
-                addCommentHandler={addCommentHandler}
+      {/* <MovieDetailInfo movie={movie} movieRating={movieRating} /> */}
+      <Container>
+        <Row>
+          <Col lg={5} className="offset-lg-1">
+            <Row className="likeDislike">
+              <img
+                src={movie.image}
+                loading="lazy"
+                alt={movie.title}
+                style={{ maxWidth: "70%" }}
               />
-            </div>
-            <div>
-              {comments.map((comment, index) => (
-                <div key={index}>
-                  <p>{comment.comment}</p>
-                  <p>{comment.author}</p>
-                </div>
-              ))}
-            </div>
+            </Row>
+            <br></br>
 
+            <div className="likeDislike">
+              <button
+                className="btn btn-success"
+                onClick={() => handleLikeMovie()}
+              >
+                Like
+              </button>
+              <button
+                className="btn btn-danger"
+                onClick={() => handleDislikeMovie()}
+              >
+                Dislike
+              </button>
+            </div>
+            <br></br>
+            <div className="likeDislike">
+              <p>{message}</p>
+            </div>
+          </Col>
+          <Col lg={4}>
             <div>
+              <h1>{movie.title}</h1>
+            </div>
+            <hr></hr>
+            <div>
+              <p>{movie.year}</p>
+            </div>
+            <div>
+              <p>{movie.directors}</p>
+            </div>
+            <div>
+              <p>{movie.plot}</p>
+            </div>
+            <div>
+              <p>{movie.stars}</p>
+            </div>
+            <div>
+              <p>{movie.genres}</p>
+            </div>
+            {movieRating && <p>Average Rating: {movieRating.toFixed(2)}</p>}
+            {!loading && isPremium && ( // Premium Content Here!!!
+             <div>
               <div>
                 <p>Rate the movie:</p>
                 <select value={rating || ""} onChange={handleRatingChange}>
-                  <option value="">Select rating</option>
+                  <option value="">Select rating:</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -215,9 +217,41 @@ function MovieDetailsPage() {
                 <button onClick={handleRatingsSubmit}>Submit Rating</button>
               </div>
             </div>
-            {movieRating && <p>Average Rating: {movieRating.toFixed(2)}</p>}
+            )}
+          </Col>
+        </Row>
+        <hr></hr>
+      </Container>
+      {loading && (
+        <div className="spinner-grow" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      )}
+      {/* <div>
+        <button onClick={goBack}>Back</button>
+      </div> */}
+
+      {!loading &&
+        isPremium && ( // Premium Content Here!!!
+          <>
+            <div>
+              <CreateComment
+                movieId={movieId}
+                addCommentHandler={addCommentHandler}
+              />
+            </div>
           </>
         )}
+      <>
+        <div>
+          {comments.map((comment, index) => (
+            <CommentCard
+              author={comment.author}
+              comment={comment.comment} />
+          ))}
+        </div>
+        <br />
+      </>
     </div>
   );
 }
