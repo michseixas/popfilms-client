@@ -44,13 +44,13 @@ function LoginPage(props) {
 
   return (
     <div>
-      <h1 className="text-center">Login</h1>
+      <h1 className="text-center text-white">Login</h1>
       {/* The following message will appear once the user successfully signs up to Popfilms. The signupOk variable is defined in the auth.context. */}
       <form onSubmit={submitHandler} className="w-75 mx-auto">
       {signupOk && <Alert message= "Thank you for signing up. You can now use your credentials to login to Popfilms." />} 
         {error != "" && <Alert message={error} />}
-        <div className="mb-3">
-          <label htmlFor="username" className="form-label">
+        <div className="mb-3 text-white">
+          <label htmlFor="username" className="form-label" >
             Username
           </label>
           <input
@@ -61,7 +61,7 @@ function LoginPage(props) {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 text-white">
           <label htmlFor="password" className="form-label">
             Password
           </label>
