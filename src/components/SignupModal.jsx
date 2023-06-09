@@ -88,7 +88,7 @@ function SignupModal() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
+      <Button variant="dark" onClick={handleShow}>
         Signup
       </Button>
 
@@ -185,19 +185,20 @@ function SignupModal() {
               </div>
               {/* //cloudinary end */}
 
-              <button
+              <Button
                 type="submit"
                 className="btn btn-primary"
+                variant="dark"
                 onClick={handleClose}
                 disabled={loadingAvatar}
               >
                 Signup
-              </button>
+              </Button>
             </form>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="dark" onClick={handleClose}>
             Close
           </Button>
         </Modal.Footer>

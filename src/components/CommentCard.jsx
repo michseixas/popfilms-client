@@ -1,15 +1,18 @@
 import React from "react";
+import { Container } from "react-bootstrap";
+import Card from 'react-bootstrap/Card';
 
 
 const CommentCard = ({author, comment}) => {
 
   return (
-      <div className="card w-75 mb-3">
-        <div className="card-body">
-          <h5 className="card-title">{author}</h5>
-          <p className="card-text">{comment}</p>
-        </div>
-      </div>
+    <>
+      <Container>
+        <Card className="bg-dark text-white">
+          <Card.Body><b>{author}:</b> {comment}</Card.Body>
+        </Card>
+      </Container>
+    </>
   );
 };
 

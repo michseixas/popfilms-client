@@ -6,31 +6,31 @@ import { Link } from "react-router-dom";
 function MenuTop() {
   const handleClose = () => setShow(false);
   return (
-    <Container>
+    <Container className="bg-dark text-white">
       <Row>
         <Col>
-          <h1>Movies</h1>
+          <h2>Movies</h2>
           <ul>
             <li>
-              <Link onClick={handleClose} to="/top250">
+              <Link className="menu-top-link" onClick={handleClose} to="/top250">
                 {" "}
                 Top 250 Movies
               </Link>
             </li>
             <li>
-              <Link onClick={handleClose} to="/mostpopular">
+              <Link className="menu-top-link" onClick={handleClose} to="/mostpopular">
                 {" "}
                 Most Popular Movies
               </Link>
             </li>
             <li>
-              <Link onClick={handleClose} to="/theater">
+              <Link className="menu-top-link" onClick={handleClose} to="/theater">
                 {" "}
                 Theater Movies
               </Link>
             </li>
             <li>
-              <Link onClick={handleClose} to="/comingsoon">
+              <Link className="menu-top-link" onClick={handleClose} to="/comingsoon">
                 {" "}
                 Coming Soon
               </Link>
@@ -38,37 +38,53 @@ function MenuTop() {
           </ul>
         </Col>
         <Col>
-          <h1>Movies by Genre</h1>
+          <h2>Movies by Genre</h2>
           <ul>
             <li>
-              <Link onClick={handleClose} to="/drama">
+              <Link className="menu-top-link" onClick={handleClose} to="/drama">
                 Drama
               </Link>
             </li>
             <li>
-              <Link onClick={handleClose} to="/comedy">
+              <Link className="menu-top-link" onClick={handleClose} to="/comedy">
                 Comedy
               </Link>
             </li>
             <li>
-              <Link onClick={handleClose} to="/action">
+              <Link className="menu-top-link" onClick={handleClose} to="/action">
                 Action
               </Link>
             </li>
             <li>
-              <Link onClick={handleClose} to="/romance">
+              <Link className="menu-top-link" onClick={handleClose} to="/romance">
                 Romance
               </Link>
             </li>
           </ul>
         </Col>
         <Col>
-          <h1>Celebrities</h1>
+          <h2>{" "}<br></br></h2>
           <ul>
-            <li>Drama</li>
-            <li>Comedy</li>
-            <li>Action</li>
-            <li>Romance</li>
+            <li>
+            <Link className="menu-top-link" onClick={handleClose} to="/animation">
+                Animation
+              </Link>
+            </li>
+            <li>
+            <Link className="menu-top-link" onClick={handleClose} to="/biography">
+                Biography
+              </Link>
+            </li>
+            <li>
+            <Link className="menu-top-link" onClick={handleClose} to="/adventure">
+                Adventure
+              </Link>
+            </li>
+            <li>
+            <Link className="menu-top-link" onClick={handleClose} to="/family">
+                Family
+              </Link>
+            </li>
           </ul>
         </Col>
       </Row>

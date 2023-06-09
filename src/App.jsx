@@ -14,11 +14,16 @@ import Footer from "./components/Footer";
 import "./App.css";
 import { AuthProviderWrapper } from "./contexts/auth.context";
 import { FilterProviderWrapper } from "./contexts/filter.context";
+import { Container, Row, Col } from "react-bootstrap";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (
-    <>
-
+    <div className="page-wrapper">
+    <Container>
+    <Row>
+    <Col md={{span:10, offset:1}}>
       <AuthProviderWrapper>
       <FilterProviderWrapper>
       <Navbar />
@@ -37,7 +42,10 @@ function App() {
         </FilterProviderWrapper>
       </AuthProviderWrapper>
       <Footer />
-    </>
+      </Col>
+      </Row>
+    </Container>  
+    </div>
   );
 }
 
