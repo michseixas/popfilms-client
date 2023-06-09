@@ -6,6 +6,7 @@ import EditUserInfo from "../components/EditUserInfoModal";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getLikedMovies } from "../services/imdb.service";
 import Button from "react-bootstrap/Button";
+import { Container, Row, Col } from "react-bootstrap";
 
 function UserProfilePage() {
   const [userInfo, setUserInfo] = useState({});
@@ -71,41 +72,45 @@ function UserProfilePage() {
   if (!deleteUser && deleted) return <Navigate to="/" />;
 
   return (
-    
-
-
-
-    <div className="container-fluid bg-black text-white p-5">
-      <div className="container mt-5 text-center">
-        <img
-          src={userInfo.imageUrl}
-          alt="Avatar"
-          className="img-fluid rounded-circle mx-auto d-block mb-3"
-          style={{ width: "300px" }}
-        />
-        <label htmlFor="avatar" className="btn btn-primary btn-sm">
-          Change Picture
-        </label>
-        <div className="form-group">
-          <input
-            id="avatar"
-            type="file"
-            className="visually-hidden"
-            onChange={handleUpdateAvatar}
-            accept="image/*"
-          />
-        </div>
-      </div>
-      <div>
-      <EditUserInfo userId={user._id} />
-
-     
-        <Button className="btn btn-danger" onClick={handleDeleteProfile}>
-          Delete profile
-        </Button>
-      </div>
-
-
+    <>
+      <Container className="container-fluid bg-black text-white p-5">
+        <Row> 
+          <Col md={{span:4, offset:2}}>
+          {/* <div className="container-fluid bg-black text-white p-5"> */}
+          <EditUserInfo userId={user._id} />
+            <Button className="btn btn-danger" onClick={handleDeleteProfile}>
+              Delete profile
+            </Button>
+          </Col>
+          <Col  md={{span:4}}>
+            <>
+              <div className="container mt-5 text-center">
+                <img
+                  src={userInfo.imageUrl}
+                  alt="Avatar"
+                  className="img-fluid rounded-circle mx-auto d-block mb-3"
+                  style={{ width: "300px" }}
+                />
+                <label htmlFor="avatar" className="btn btn-primary btn-sm">
+                  Change Picture
+                </label>
+                <div className="form-group">
+                  <input
+                    id="avatar"
+                    type="file"
+                    className="visually-hidden"
+                    onChange={handleUpdateAvatar}
+                    accept="image/*"
+                  />
+                </div>
+              </div>
+            </>
+          </Col>
+        </Row> 
+        <br></br>
+        <br></br>
+        <hr></hr>
+      </Container>
       <h1 className="text-white">Liked Movies</h1>
       <div className="row">
         {movieLike.map((movie) => (
@@ -134,8 +139,10 @@ function UserProfilePage() {
           Back
         </Button>
       </div>
+      <br></br>
+      </>
 
-    </div>
+
   );
 }
 

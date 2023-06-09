@@ -23,12 +23,15 @@ const CreateComment = ({ movieId, addCommentHandler }) => {
 
       .then((response) => {
         console.log("New comment:", response.data); // Adding the comment to the list of comments
+        
       })
       .catch((error) => {
         console.error("Error adding comment:", error);
       });
     setAuthor(user.username);
-    setComment("");
+
+    // Force a Reload to refresh the comment list
+    window.location.reload();
   };
 
   return (
