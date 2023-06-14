@@ -1,4 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
+import Stars from "./Stars";
 
 function MovieDetailInfo({ movie, movieRating }) {
   console.log("que trae movie objeto", movie);
@@ -33,6 +34,7 @@ function MovieDetailInfo({ movie, movieRating }) {
             <p>{movie.genres}</p>
           </div>
           {movieRating !== null && <p>Average Rating: {movieRating.toFixed(2)}</p>}
+          
         </Col>
       </Row>
     </Container>
