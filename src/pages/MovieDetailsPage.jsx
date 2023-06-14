@@ -7,6 +7,10 @@ import MovieDetailInfo from "../components/MovieDetailInfo";
 import { authContext } from "../contexts/auth.context";
 import { Container, Row, Col } from "react-bootstrap";
 import CommentCard from "../components/CommentCard";
+import Button from "react-bootstrap/Button";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Popover from 'react-bootstrap/Popover'
 import axios from "axios";
 
 let baseUrl = import.meta.env.VITE_API_URL + "/movie";
@@ -161,24 +165,56 @@ function MovieDetailsPage() {
             </Row>
             <br></br>
 
-            <div className="likeDislike">
-              <button
-                className="btn btn-success"
-                onClick={() => handleLikeMovie()}
-              >
-                Like
-              </button>
-              <button
-                className="btn btn-danger"
-                onClick={() => handleDislikeMovie()}
-              >
-                Dislike
-              </button>
-            </div>
-            <br></br>
-            <div className="likeDislike">
-              <p>{message}</p>
-            </div>
+            {!loading &&
+              isLoggedIn && ( // if logged in, will see the like dislike buttons
+                <>
+                  <div className="likeDislike">
+                    <button
+                      className="btn btn-success"
+                      onClick={() => handleLikeMovie()}
+                    >
+                      Like
+                    </button>
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => handleDislikeMovie()}
+                    >
+                      Dislike
+                    </button>
+                  </div>
+                  <br></br>
+                  <div className="likeDislike">
+                    <p>{message}</p>
+                  </div>
+                </>
+              )}
+
+            {!loading &&
+              !isLoggedIn && ( // if not logged in, like and dislike button invite to signup
+                <>
+                  <div className="likeDislike">
+                  <OverlayTrigger
+                    overlay={<Popover id="tooltip-disabled">&nbsp;&nbsp; Signup to like this movie! &nbsp;&nbsp; </Popover>}
+                  >
+                    <span className="d-inline-block">
+                      <Button className="btn btn-success" disabled style={{ pointerEvents: "none" }}>
+                      Like
+                      </Button>
+                    </span>
+                  </OverlayTrigger>
+                  <OverlayTrigger
+                    overlay={<Popover id="tooltip-disabled">&nbsp;&nbsp; Signup to like this movie! &nbsp;&nbsp;</Popover>}
+                  >
+                    <span className="d-inline-block">
+                      <Button className="btn btn-danger" disabled style={{ pointerEvents: "none" }}>
+                      Dislike
+                      </Button>
+                    </span>
+                  </OverlayTrigger>
+                    
+                  </div>
+                </>
+              )}
           </Col>
           <Col lg={4}>
             <div>
@@ -201,23 +237,24 @@ function MovieDetailsPage() {
               <p>{movie.genres}</p>
             </div>
             {movieRating && <p>Average Rating: {movieRating.toFixed(2)}</p>}
-            {!loading && isPremium && ( // Premium Content Here!!!
-             <div>
-              <div>
-                <p>Rate the movie:</p>
-                <select value={rating || ""} onChange={handleRatingChange}>
-                  <option value="">Select rating:</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                  <option value="5">5</option>
-                </select>
-                <div>{submitMessage}</div>
-                <button onClick={handleRatingsSubmit}>Submit Rating</button>
-              </div>
-            </div>
-            )}
+            {!loading &&
+              isPremium && ( // Premium Content Here!!!
+                <div>
+                  <div>
+                    <p>Rate the movie:</p>
+                    <select value={rating || ""} onChange={handleRatingChange}>
+                      <option value="">Select rating:</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                    <div>{submitMessage}</div>
+                    <button onClick={handleRatingsSubmit}>Submit Rating</button>
+                  </div>
+                </div>
+              )}
           </Col>
         </Row>
         <hr></hr>
@@ -245,9 +282,7 @@ function MovieDetailsPage() {
       <>
         <div>
           {comments.map((comment, index) => (
-            <CommentCard
-              author={comment.author}
-              comment={comment.comment} />
+            <CommentCard author={comment.author} comment={comment.comment} />
           ))}
         </div>
         <br />

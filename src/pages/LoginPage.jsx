@@ -12,12 +12,17 @@ function LoginPage(props) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const { isAuthenticated, isLoggedIn, loading , signupOk, isPremium, signupDone} = useContext(authContext);
+  const {
+    isAuthenticated,
+    isLoggedIn,
+    loading,
+    signupOk,
+    isPremium,
+    signupDone,
+  } = useContext(authContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
-
-    
 
     if (username == "" || password == "") {
       console.log("error: fields missing");
@@ -32,11 +37,10 @@ function LoginPage(props) {
         isAuthenticated();
         signupDone();
         //navigate("/");
-
       })
       .catch((err) => {
-        console.log("Que error ocurrio aqui?", err)
-        setError("Could not finish the process, try again--------")
+        console.log("Que error ocurrio aqui?", err);
+        setError("Could not finish the process, try again--------");
       });
   };
 
@@ -47,10 +51,12 @@ function LoginPage(props) {
       <h1 className="text-center text-white">Login</h1>
       {/* The following message will appear once the user successfully signs up to Popfilms. The signupOk variable is defined in the auth.context. */}
       <form onSubmit={submitHandler} className="w-75 mx-auto">
-      {signupOk && <Alert message= "Thank you for signing up. You can now use your credentials to login to Popfilms." />} 
+        {signupOk && (
+          <Alert message="Thank you for signing up. You can now use your credentials to login to Popfilms." />
+        )}
         {error != "" && <Alert message={error} />}
         <div className="mb-3 text-white">
-          <label htmlFor="username" className="form-label" >
+          <label htmlFor="username" className="form-label">
             Username
           </label>
           <input
@@ -77,6 +83,12 @@ function LoginPage(props) {
           Login
         </button>
       </form>
+      <br></br>
+      <div className="pop-login">
+        <img src="/images/popfilmslogoNav.png" />
+      </div>
+      <br></br>
+      <br></br>
     </div>
   );
 }

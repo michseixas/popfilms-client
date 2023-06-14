@@ -9,6 +9,7 @@ import MenuTop from "../components/MenuTop";
 import FilterForm from "./FilterForm";
 import filterMovies from "../pages/MoviesListPage";
 import { Container, Row, Col } from "react-bootstrap";
+import { Menu } from 'lucide-react';
 
 const Navbar = () => {
   const { isLoggedIn, user, loading, isPremium } = useContext(authContext);
@@ -40,7 +41,7 @@ const Navbar = () => {
           </Col>
           <Col xs={2} className="left-column">
             <Button variant="dark" onClick={handleShow} className="me-2">
-              Menu
+            <Menu size={30} color="#ffffff" />
             </Button>
           </Col>
           {/* //Key, placement and name are fixed properties of the off-canvas component */}
