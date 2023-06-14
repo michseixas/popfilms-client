@@ -63,3 +63,7 @@
     display: flex;
     justify-content: center;
   }
+
+  .pop-login {
+    text-align: center;
+  }

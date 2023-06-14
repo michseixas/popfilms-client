@@ -159,14 +159,14 @@ function EditUserInfo({ userId }) {
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicPremium">
-              <Form.Label>Premium</Form.Label>
+              {/* <Form.Label>Premium</Form.Label>
             <Form.Check // prettier-ignore
                 type="checkbox"
                 id="isPremium"
                 checked={isPremium} 
                 label="Check for Premium Access"
                 onChange={(e) => setIsPremium(e.target.checked)}
-              />
+              /> */}
               </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicCity">
               <Form.Label>City</Form.Label>
