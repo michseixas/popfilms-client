@@ -21,13 +21,13 @@ const Footer = () => {
               <h5 className="text-uppercase">GitHub</h5>
               <ul className="list-unstyled mb-0">
                 <li>
-                  <a href="https://github.com/michseixas" className="text-white">Mich Seixas GitHub</a>
+                  <a href="https://github.com/michseixas" target="_blank" className="text-white">Mich Seixas GitHub</a>
                 </li>
                 <li>
-                  <a href="https://github.com/erikabalog" className="text-white">Erika Balog GitHub</a>
+                  <a href="https://github.com/erikabalog" target="_blank" className="text-white">Erika Balog GitHub</a>
                 </li>
                 <li>
-                  <a href="https://github.com/Tonistonis" className="text-white">Toni Soler GitHub</a>
+                  <a href="https://github.com/Tonistonis" target="_blank" className="text-white">Toni Soler GitHub</a>
                 </li>
               </ul>
             </div>
@@ -38,13 +38,13 @@ const Footer = () => {
               <h5 className="text-uppercase mb-0">LinkedIn</h5>
               <ul className="list-unstyled">
                 <li>
-                  <a href="https://www.linkedin.com/in/michseixas/" className="text-white">Mich Seixas LinkedIn</a>
+                  <a href="https://www.linkedin.com/in/michseixas/" target="_blank" className="text-white">Mich Seixas LinkedIn</a>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/in/erika-balog-hon%C3%B3rio-da-silva-55608955/" className="text-white">Erika Balog LinkedIn</a>
+                  <a href="https://www.linkedin.com/in/erika-balog-hon%C3%B3rio-da-silva-55608955/" target="_blank" className="text-white">Erika Balog LinkedIn</a>
                 </li>
                 <li>
-                  <a href="https://www.linkedin.com/in/toni-soler-belando-300b38168/" className="text-white">Toni Soler LinkedIn</a>
+                  <a href="https://www.linkedin.com/in/toni-soler-belando-300b38168/" target="_blank" className="text-white">Toni Soler LinkedIn</a>
                 </li>
               </ul>
             </div>
@@ -56,8 +56,8 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center p-3" style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-          © Popfilms 2023 @ Ironhack. WebDev Students by Ironhack.
-          <a className="text-white" href="https://ironhack.com">  Learn more</a>
+          © Popfilms 2023 by Web Dev students @  
+          <a className="text-white" href="https://ironhack.com"> Ironhack</a>
         </div>
         {/* Copyright */}
       </footer>

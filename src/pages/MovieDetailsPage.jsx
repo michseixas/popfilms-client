@@ -12,6 +12,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import Popover from 'react-bootstrap/Popover'
 import axios from "axios";
+import Stars from "../components/Stars";
 
 let baseUrl = import.meta.env.VITE_API_URL + "/movie";
 
@@ -236,7 +237,8 @@ function MovieDetailsPage() {
             <div>
               <p>{movie.genres}</p>
             </div>
-            {movieRating && <p>Average Rating: {movieRating.toFixed(2)}</p>}
+            {movieRating && <p>Average Rating: <Stars rating={movieRating} /> ({movieRating.toFixed(2)})</p>}
+            
             {!loading &&
               isPremium && ( // Premium Content Here!!!
                 <div>
