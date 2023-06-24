@@ -12,25 +12,25 @@ function MenuTop() {
           <h2>Movies</h2>
           <ul>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/top250">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/top250">
                 {" "}
                 Top 250 Movies
               </Link>
             </li>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/mostpopular">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/mostpopular">
                 {" "}
                 Most Popular Movies
               </Link>
             </li>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/theater">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/theater">
                 {" "}
                 Theater Movies
               </Link>
             </li>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/comingsoon">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/comingsoon">
                 {" "}
                 Coming Soon
               </Link>
@@ -41,22 +41,22 @@ function MenuTop() {
           <h2>Movies by Genre</h2>
           <ul>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/drama">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/drama">
                 Drama
               </Link>
             </li>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/comedy">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/comedy">
                 Comedy
               </Link>
             </li>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/action">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/action">
                 Action
               </Link>
             </li>
             <li>
-              <Link className="menu-top-link" onClick={handleClose} to="/romance">
+              <Link className="menu-top-link" onClick={handleClose} to="/lists/romance">
                 Romance
               </Link>
             </li>
@@ -66,22 +66,22 @@ function MenuTop() {
           <h2>{" "}<br></br></h2>
           <ul>
             <li>
-            <Link className="menu-top-link" onClick={handleClose} to="/animation">
+            <Link className="menu-top-link" onClick={handleClose} to="/lists/animation">
                 Animation
               </Link>
             </li>
             <li>
-            <Link className="menu-top-link" onClick={handleClose} to="/biography">
+            <Link className="menu-top-link" onClick={handleClose} to="/lists/biography">
                 Biography
               </Link>
             </li>
             <li>
-            <Link className="menu-top-link" onClick={handleClose} to="/adventure">
+            <Link className="menu-top-link" onClick={handleClose} to="/lists/adventure">
                 Adventure
               </Link>
             </li>
             <li>
-            <Link className="menu-top-link" onClick={handleClose} to="/family">
+            <Link className="menu-top-link" onClick={handleClose} to="/lists/family">
                 Family
               </Link>
             </li>
