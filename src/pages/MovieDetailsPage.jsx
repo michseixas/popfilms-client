@@ -34,7 +34,6 @@ function MovieDetailsPage() {
   // };
 
   useEffect(() => {
-    console.log("viendo movieId", movieId);
     getMovieDetails(movieId)
       .then((resp) => {
         console.log("results: ", resp.data);

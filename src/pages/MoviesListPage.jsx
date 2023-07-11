@@ -11,7 +11,6 @@ function MoviesListPage() {
   const { text } =
   useContext(filterContext);
   let { listId } = useParams();
-  console.log("que trajo listId", listId);
 
   useEffect(() => {
     filterMovies(text)
@@ -43,7 +42,6 @@ function MoviesListPage() {
 
   // filter a list of movies based on a text input and update the filtered movies state or variable.
   const filterMovies = (text) => {
-    console.log("que trae el text---->" , text)
     if (text === "") {
       setFilteredMovies(movies); // Set filteredMovies to the complete array of movies
     } else {

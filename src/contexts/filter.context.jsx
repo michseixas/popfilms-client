@@ -8,7 +8,6 @@ function FilterProviderWrapper({children}){
     const [text, setText] = useState("");
 
     const handleInputChange = (event) => {
-        console.log("que trae el text", text)
         //event.target.value extracts the new text from the input field at the precise point where the user is typing (current value typed by the user)  
           const newText = event.target.value;
           setText(newText); //updates the text state with the new text by calling setText(newText) and renders with the cuerrent updated value 

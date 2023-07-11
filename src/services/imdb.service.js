@@ -20,7 +20,6 @@ const getLikedMovies = (arrayMovieId) => {
   
 
 const getMoviesByType = (type) => {
-    console.log( "que es lo que trae type----???", type)
     if (type === 'top250') {
         return axios.get(baseUrl + '/Top250Movies/k_xmndj5an');
     } 

@@ -2,7 +2,6 @@ import { Container, Row, Col } from "react-bootstrap";
 import Stars from "./Stars";
 
 function MovieDetailInfo({ movie, movieRating }) {
-  console.log("que trae movie objeto", movie);
   return (
     <Container>
       <Row>

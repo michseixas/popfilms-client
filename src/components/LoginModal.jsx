@@ -38,7 +38,6 @@ function LoginModal() {
         //navigate("/");
       })
       .catch((err) => {
-        console.log("Que error ocurrio aqui?", err);
         setError("Could not finish the process, try again--------");
       });
   };
