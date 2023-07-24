@@ -29,6 +29,7 @@ function FilterProviderWrapper({children}){
     }
     return(<filterContext.Provider value={exposedValues}>
         {children}
+        <button type="button" class="btn">Phone Details</button>
     </filterContext.Provider>);
 }
 
